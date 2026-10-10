@@ -1,7 +1,7 @@
 "use client";
 
 import { Magnetic } from "@/components/Magnetic";
-import { mailto, site, socials } from "@/data/site";
+import { mailto, site, socialGroups } from "@/data/site";
 import { ArrowUpRight } from "lucide-react";
 
 export function ContactCTA() {
@@ -51,20 +51,27 @@ export function ContactCTA() {
             {site.phone}
           </a>
         </div>
-        <ul className="flex flex-wrap gap-x-6 gap-y-1">
-          {socials.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center text-base underline decoration-ink/20 underline-offset-4 hover:decoration-accent"
-              >
-                {item.label}
-              </a>
-            </li>
+        <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
+          {socialGroups.map((group) => (
+            <div key={group.label}>
+              <p className="eyebrow">{group.label}</p>
+              <ul className="mt-1 flex flex-wrap gap-x-5">
+                {group.links.map((item) => (
+                  <li key={item.href}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-11 items-center text-base underline decoration-ink/20 underline-offset-4 hover:decoration-accent"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

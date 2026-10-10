@@ -81,14 +81,22 @@ export const services = [
   },
 ] as const;
 
-export const socials = [
-  { label: "Instagram", href: "https://www.instagram.com" },
-  { label: "Behance", href: "https://www.behance.net" },
-  { label: "Dribbble", href: "https://dribbble.com" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/andi-malaj/" },
+export const socialGroups = [
+  {
+    label: "Brand",
+    links: [
+      { label: "TikTok", href: "https://www.tiktok.com/@malajdesign" },
+      { label: "Instagram", href: "https://www.instagram.com/malajdesign/" },
+    ],
+  },
+  {
+    label: "Personal",
+    links: [
+      { label: "Instagram", href: "https://www.instagram.com/_andimalaj_/" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/andi-malaj/" },
+    ],
+  },
 ] as const;
-
-export const footerSocials = socials.filter((item) => item.label !== "Dribbble");
 
 export const featured = {
   kicker: "Featured Case",
