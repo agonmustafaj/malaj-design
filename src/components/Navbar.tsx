@@ -50,7 +50,7 @@ export function Navbar() {
           </nav>
           <Magnetic className="inline-block">
             <a
-              href="/#contact"
+              href="/contact"
               className="inline-flex min-h-11 items-center gap-2 text-[12px] tracking-[0.16em] uppercase"
             >
               Let&apos;s talk

@@ -4,12 +4,17 @@ import { portrait } from "@/data/projects";
 import { RevealText } from "@/components/Reveal";
 import Image from "next/image";
 
-export function About() {
+export function About({ page = false }: { page?: boolean }) {
   return (
-    <section id="about" className="section-y page-x" aria-labelledby="about-heading">
+    <section
+      id="about"
+      className={page ? "page-x pt-8 pb-[clamp(4.25rem,8vw,8rem)] md:pt-14" : "section-y page-x"}
+      aria-labelledby="about-heading"
+    >
       <div className="grid gap-8 lg:grid-cols-12 lg:gap-6">
         <SectionTitle
           id="about-heading"
+          as={page ? "h1" : "h2"}
           className="lg:col-span-7"
           lines={["About", "the designer"]}
           italicLine={1}

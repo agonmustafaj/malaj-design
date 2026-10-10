@@ -8,7 +8,7 @@ export default function NotFound() {
         This page is not in the series.
       </h1>
       <Link
-        href="/#work"
+        href="/work"
         className="mt-10 inline-flex min-h-12 w-fit items-center border border-ink/20 px-6 text-xs tracking-[0.18em] uppercase transition-colors duration-300 hover:bg-ink hover:text-bg"
       >
         Back to the work

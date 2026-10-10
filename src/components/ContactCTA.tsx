@@ -4,16 +4,22 @@ import { Magnetic } from "@/components/Magnetic";
 import { mailto, site, socialGroups } from "@/data/site";
 import { ArrowUpRight } from "lucide-react";
 
-export function ContactCTA() {
+export function ContactCTA({ page = false }: { page?: boolean }) {
+  const Heading = page ? "h1" : "h2";
+
   return (
-    <section id="contact" className="pt-[clamp(4.25rem,8vw,8rem)]" aria-labelledby="contact-heading">
+    <section
+      id="contact"
+      className={page ? "pt-8 md:pt-14" : "pt-[clamp(4.25rem,8vw,8rem)]"}
+      aria-labelledby="contact-heading"
+    >
       <div className="page-x">
         <p className="eyebrow">Contact</p>
-        <h2 id="contact-heading" className="contact-title mt-5 uppercase">
+        <Heading id="contact-heading" className="contact-title mt-5 uppercase">
           <span className="block">Have a</span>
           <span className="block">project</span>
           <span className="block font-serif font-normal italic normal-case">in mind?</span>
-        </h2>
+        </Heading>
         <p className="mt-8 max-w-[22ch] text-[clamp(1.15rem,2vw,1.6rem)] leading-snug">
           Let&apos;s create something people remember.
         </p>

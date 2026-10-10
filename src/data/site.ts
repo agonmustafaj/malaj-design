@@ -18,10 +18,10 @@ export const site = {
 export const mailto = `mailto:${site.email}?subject=${encodeURIComponent("Project inquiry")}`;
 
 export const nav = [
-  { href: "/#work", label: "Work" },
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export const clients = [

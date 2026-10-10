@@ -4,11 +4,20 @@ import { ProjectItem } from "@/components/ProjectItem";
 import { SectionTitle } from "@/components/SectionTitle";
 import { projects } from "@/data/projects";
 
-export function ProjectGrid() {
+export function ProjectGrid({ page = false }: { page?: boolean }) {
   return (
-    <section id="work" className="section-y page-x" aria-labelledby="work-heading">
+    <section
+      id="work"
+      className={page ? "page-x pt-8 pb-[clamp(4.25rem,8vw,8rem)] md:pt-14" : "section-y page-x"}
+      aria-labelledby="work-heading"
+    >
       <div className="mb-[clamp(2.5rem,6vw,4.5rem)] grid items-end gap-6 lg:grid-cols-12">
-        <SectionTitle id="work-heading" className="lg:col-span-7" lines={["Selected", "Work"]} />
+        <SectionTitle
+          id="work-heading"
+          as={page ? "h1" : "h2"}
+          className="lg:col-span-7"
+          lines={["Selected", "Work"]}
+        />
         <p className="max-w-[32ch] text-base leading-relaxed text-muted lg:col-span-4 lg:col-start-9 lg:pb-2 lg:text-lg">
           Work from Branding and Advertising — a streetwear identity, posters, a mascot, sound, and stationery.
         </p>

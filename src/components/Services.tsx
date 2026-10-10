@@ -1,14 +1,20 @@
 import { services } from "@/data/site";
 import { ArrowUpRight } from "lucide-react";
 
-export function Services() {
+export function Services({ page = false }: { page?: boolean }) {
+  const Heading = page ? "h1" : "h2";
+
   return (
-    <section id="services" className="section-y" aria-labelledby="services-heading">
+    <section
+      id="services"
+      className={page ? "pt-8 pb-[clamp(4.25rem,8vw,8rem)] md:pt-14" : "section-y"}
+      aria-labelledby="services-heading"
+    >
       <div className="page-x">
         <p className="eyebrow mb-4">Practice</p>
-        <h2 id="services-heading" className="display uppercase">
+        <Heading id="services-heading" className="display uppercase">
           What I do
-        </h2>
+        </Heading>
       </div>
 
       <ul className="mt-[clamp(2rem,5vw,3.5rem)] border-b border-ink/15">

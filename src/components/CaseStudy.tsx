@@ -26,7 +26,7 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
         <header className="page-x pt-8 md:pt-14">
           <div className="flex items-center justify-between gap-4">
             <Link
-              href="/#work"
+              href="/work"
               className="inline-flex min-h-11 items-center gap-2 text-xs tracking-[0.16em] uppercase"
             >
               <ArrowLeft className="size-4" aria-hidden="true" />

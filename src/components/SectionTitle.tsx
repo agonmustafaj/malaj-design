@@ -9,13 +9,14 @@ type SectionTitleProps = {
   lines: string[];
   italicLine?: number;
   className?: string;
+  as?: "h1" | "h2";
 };
 
-export function SectionTitle({ id, eyebrow, lines, italicLine, className }: SectionTitleProps) {
+export function SectionTitle({ id, eyebrow, lines, italicLine, className, as: Heading = "h2" }: SectionTitleProps) {
   return (
     <div className={className}>
       {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
-      <h2 id={id} className="display uppercase">
+      <Heading id={id} className="display uppercase">
         {lines.map((line, index) => (
           <RevealText key={line} as="span" className="block" delay={index * 0.08}>
             <span
@@ -28,7 +29,7 @@ export function SectionTitle({ id, eyebrow, lines, italicLine, className }: Sect
             </span>
           </RevealText>
         ))}
-      </h2>
+      </Heading>
     </div>
   );
 }
