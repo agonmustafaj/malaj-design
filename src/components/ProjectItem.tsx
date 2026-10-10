@@ -2,6 +2,7 @@ import { RevealImage } from "@/components/Reveal";
 import type { Project } from "@/data/projects";
 import { cn } from "@/lib/cn";
 import Image from "next/image";
+import Link from "next/link";
 
 type ProjectItemProps = {
   project: Project;
@@ -17,7 +18,7 @@ export function ProjectItem({ project, index }: ProjectItemProps) {
         index > 0 && "mt-[clamp(2.75rem,6vw,4.5rem)] border-t border-ink/10 pt-[clamp(2.75rem,6vw,4.5rem)]",
       )}
     >
-      <a
+      <Link
         href={project.href}
         data-cursor="view"
         className="group block"
@@ -28,7 +29,7 @@ export function ProjectItem({ project, index }: ProjectItemProps) {
         {project.layout === "split" ? <Split project={project} /> : null}
         {project.layout === "landscape" ? <Landscape project={project} /> : null}
         {project.layout === "overlap" ? <Overlap project={project} /> : null}
-      </a>
+      </Link>
     </article>
   );
 }
@@ -55,6 +56,9 @@ function Meta({ project, className }: { project: Project; className?: string }) 
     <div className={cn("text-base text-muted", className)}>
       <p>{project.category}</p>
       <p>{project.year}</p>
+      <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-ink uppercase">
+        View project <span className="text-accent">↗</span>
+      </p>
     </div>
   );
 }
@@ -74,7 +78,7 @@ function Media({
         src={project.image}
         alt={project.imageAlt}
         fill
-        quality={60}
+        quality={85}
         sizes={sizes}
         style={{ objectPosition: project.position }}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"

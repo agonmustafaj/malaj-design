@@ -35,7 +35,7 @@ export function About() {
               src={portrait.src}
               alt={portrait.alt}
               fill
-              quality={60}
+              quality={85}
               sizes="(min-width: 1024px) 420px, 80vw"
               className="scale-[1.34] object-cover"
             />

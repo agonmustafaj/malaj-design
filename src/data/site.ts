@@ -18,21 +18,21 @@ export const site = {
 export const mailto = `mailto:${site.email}?subject=${encodeURIComponent("Project inquiry")}`;
 
 export const nav = [
-  { href: "#work", label: "Work" },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#work", label: "Work" },
+  { href: "/#about", label: "About" },
+  { href: "/#services", label: "Services" },
+  { href: "/#contact", label: "Contact" },
 ] as const;
 
 export const clients = [
-  "RAGE",
-  "LUPIN",
-  "BALANCE",
-  "NATA FRIKES",
-  "SHQIPNI",
-  "LYNX",
-  "INSTANT CRUSH",
-  "DIOR",
+  { label: "RAGE", href: "/work/andi-malaj-rage" },
+  { label: "LUPIN", href: "/work/lupin" },
+  { label: "BALANCE", href: "/work/balance" },
+  { label: "NATA FRIKES", href: "/work/nata-frikes" },
+  { label: "SHQIPNI", href: "/work/shqipni-etnike" },
+  { label: "LYNX", href: "/work/lynx" },
+  { label: "INSTANT CRUSH", href: "/work/instant-crush" },
+  { label: "DIOR", href: "/work/dior-stationery" },
 ] as const;
 
 export const stats = [

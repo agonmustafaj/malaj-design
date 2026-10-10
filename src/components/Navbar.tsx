@@ -23,7 +23,7 @@ export function Navbar() {
         )}
       >
         <a
-          href="#top"
+          href="/"
           className="inline-flex min-h-11 items-center gap-2.5 text-[12px] tracking-[0.16em] whitespace-nowrap sm:text-[13px] sm:tracking-[0.18em]"
         >
           <Mark className="h-7 w-[1.55rem]" />
@@ -50,7 +50,7 @@ export function Navbar() {
           </nav>
           <Magnetic className="inline-block">
             <a
-              href="#contact"
+              href="/#contact"
               className="inline-flex min-h-11 items-center gap-2 text-[12px] tracking-[0.16em] uppercase"
             >
               Let&apos;s talk

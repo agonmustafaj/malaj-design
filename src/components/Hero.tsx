@@ -129,7 +129,7 @@ function HeroPortrait() {
             alt={heroImage.alt}
             fill
             priority
-            quality={60}
+            quality={85}
             sizes="(min-width: 1024px) 34vw, 100vw"
             className="object-cover object-[center_40%]"
           />
