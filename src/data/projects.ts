@@ -11,86 +11,125 @@ export type Project = {
   imageAlt: string;
   position: string;
   layout: ProjectLayout;
-  /** Swap this for a case-study route when pages exist. */
   href: string;
 };
 
-const photo = (id: string) => `https://images.unsplash.com/photo-${id}`;
-
 /**
- * Replace any image by editing the Unsplash photo id (or a local `/public` path).
- * Titles, categories, years, and layout live in this array.
+ * Images come from the Branding and Advertising presentation, February 2026.
+ * Swap a picture by replacing the file in /public/photos.
  */
 export const projects: Project[] = [
   {
-    id: "nor-studio",
+    id: "andi-malaj-rage",
     number: "01",
-    title: "NØR Studio",
-    category: "Brand Identity / Art Direction",
-    year: "2026",
+    title: "Andi Malaj Rage",
+    category: "Brand Identity / Streetwear",
+    year: "2025",
     description:
-      "A visual identity shaped by raw material, quiet type, and the geometry of the studio’s architecture.",
-    image: photo("1487958449943-2429e8be8625"),
-    imageAlt: "White modernist building with a strict grid of windows",
+      "A streetwear identity drawn from the Illyrian helmet — a mark, a poster, and a system meant to be worn.",
+    image: "/photos/rage-poster.jpg",
+    imageAlt: "Andi Malaj Rage poster pasted on a graffiti-covered wall",
     position: "center",
     layout: "full",
     href: "#featured",
   },
   {
-    id: "forma",
+    id: "lupin",
     number: "02",
-    title: "Forma",
-    category: "Digital Experience / UI Design",
+    title: "Lupin",
+    category: "Film Poster",
     year: "2026",
     description:
-      "An interface system for a digital atelier — precise grids, slow motion, and type that leads.",
-    image: photo("1586717791821-3f44a563fa4c"),
-    imageAlt: "Design desk covered with interface sketches and typography studies",
+      "A Season 2 poster built on a spotlight, a silhouette, and the line “The Chase is On.”",
+    image: "/photos/lupin.jpg",
+    imageAlt: "Lupin Season 2 poster in a black frame against a ridged wall",
     position: "center",
     layout: "right",
-    href: "#contact",
+    href: "#lupin",
   },
   {
-    id: "atelier-09",
+    id: "balance",
     number: "03",
-    title: "Atelier 09",
-    category: "Editorial / Branding",
-    year: "2025",
+    title: "Balance",
+    category: "Typography Poster",
+    year: "2026",
     description:
-      "Seasonal editorial language for a fashion house, from lookbook to storefront.",
-    image: photo("1445205170230-053b83016050"),
-    imageAlt: "Clothing rack in a quiet fashion studio",
+      "Stretched and mirrored letterforms split across purple and green, holding tension and symmetry in one frame.",
+    image: "/photos/balance.jpg",
+    imageAlt: "Framed typography poster titled Balance on a living room wall",
     position: "center",
     layout: "split",
-    href: "#contact",
+    href: "#balance",
   },
   {
-    id: "kinetic",
+    id: "nata-frikes",
     number: "04",
-    title: "Kinetic",
-    category: "Campaign / Creative Direction",
-    year: "2025",
+    title: "Nata Frikes",
+    category: "Event Poster",
+    year: "2026",
     description:
-      "Campaign direction for a launch that treated motion, stills, and sound as one composition.",
-    image: photo("1515886657613-9f3515b0c78f"),
-    imageAlt: "Fashion campaign portrait against a warm yellow backdrop",
-    position: "center 20%",
+      "A Halloween night in Prishtina: a skeleton at the decks, flame type, and the details of the party.",
+    image: "/photos/nata-frikes.jpg",
+    imageAlt: "Nata Frikes Halloween poster pasted on a boarded doorway",
+    position: "center",
     layout: "landscape",
-    href: "#contact",
+    href: "#nata-frikes",
   },
   {
-    id: "mono-objects",
+    id: "shqipni-etnike",
     number: "05",
-    title: "Mono Objects",
-    category: "Brand Strategy / Packaging",
-    year: "2024",
+    title: "Shqipni Etnike",
+    category: "Independence Day Poster",
+    year: "2026",
     description:
-      "Strategy and packaging for a collection of everyday objects reduced to their essential form.",
-    image: photo("1541643600914-78b084683601"),
-    imageAlt: "Amber glass bottle on a neutral surface, shot as a product study",
+      "A poster joining medieval and modern Albania across a cracked map — one people, one oath, one flag.",
+    image: "/photos/shqipni.jpg",
+    imageAlt: "Independence poster of a soldier and a medieval knight reaching toward each other",
     position: "center",
     layout: "overlap",
-    href: "#contact",
+    href: "#shqipni-etnike",
+  },
+  {
+    id: "lynx",
+    number: "06",
+    title: "Lynx",
+    category: "Mascot",
+    year: "2026",
+    description:
+      "The face of Andi Malaj Rage: a lynx in the brand hoodie, drawn for strength, agility, and attitude.",
+    image: "/photos/lynx.jpg",
+    imageAlt: "Back of a black hoodie with the lynx mascot and Andi Malaj lettering",
+    position: "center",
+    layout: "right",
+    href: "#lynx",
+  },
+  {
+    id: "instant-crush",
+    number: "07",
+    title: "Instant Crush",
+    category: "Sound / Cover Design",
+    year: "2026",
+    description:
+      "Cover art for a track heard before the artist was known — geometry, motion, and a digital atmosphere.",
+    image: "/photos/instant-crush.jpg",
+    imageAlt: "Instant Crush CD and cover spread on a purple background",
+    position: "center",
+    layout: "split",
+    href: "#instant-crush",
+  },
+  {
+    id: "dior-stationery",
+    number: "08",
+    title: "Dior Stationery",
+    category: "Stationery Study",
+    year: "2026",
+    description:
+      "A study in how a house rooted in tradition can speak through cards, letters, and a quieter mark.",
+    image: "/photos/dior.jpg",
+    imageAlt: "Dior stationery set arranged on white marble, with letterhead, cards, and envelopes",
+    position: "center",
+    layout: "landscape",
+    href: "#dior-stationery",
   },
 ];
 
@@ -100,11 +139,11 @@ export const portrait = {
 };
 
 export const heroImage = {
-  src: photo("1618221195710-dd6b41faaea6"),
-  alt: "Sunlit stone interior with sculptural furniture and warm neutral materials",
+  src: "/photos/rage-hoodie.jpg",
+  alt: "Black hoodie with the Andi Malaj Rage mark, photographed in a station corridor",
 };
 
 export const featuredImage = {
-  src: photo("1600607687939-ce8a6c25118c"),
-  alt: "Bright architectural interior with precise lines and quiet materials for NØR Studio",
+  src: "/photos/rage-sign.jpg",
+  alt: "Square wall sign carrying the Andi Malaj Rage helmet mark",
 };

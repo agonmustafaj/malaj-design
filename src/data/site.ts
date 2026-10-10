@@ -2,14 +2,14 @@ export const site = {
   name: "Andi Malaj",
   studio: "Malaj Design",
   mark: "MALAJ DESIGN",
-  title: "Malaj Design — Andi Malaj, Independent Designer & Creative Director",
+  title: "Malaj Design — Andi Malaj, Designer",
   description:
-    "Malaj Design is the studio of Andi Malaj, an independent designer specializing in brand identity, web design, art direction and digital experiences.",
+    "Portfolio of Andi Malaj: the Andi Malaj Rage streetwear identity, posters, a lynx mascot, sound artwork, and a stationery study.",
   url: "https://malaj.design",
   email: "malajandi05@gmail.com",
   phone: "+383 49 588 161",
   phoneHref: "tel:+38349588161",
-  role: "Independent Designer",
+  role: "Designer",
   location: "Based in Kosovo",
   availability: "Available Worldwide",
   footerNote: "Available for selected projects — 2026",
@@ -25,19 +25,21 @@ export const nav = [
 ] as const;
 
 export const clients = [
-  "NORTH®",
-  "ARC STUDIO",
-  "FORM",
-  "ATELIER 09",
-  "MONO",
-  "KODA",
+  "RAGE",
+  "LUPIN",
+  "BALANCE",
+  "NATA FRIKES",
+  "SHQIPNI",
+  "LYNX",
+  "INSTANT CRUSH",
+  "DIOR",
 ] as const;
 
 export const stats = [
-  { value: 8, suffix: "+", label: "Years Experience" },
-  { value: 60, suffix: "+", label: "Projects" },
-  { value: 14, suffix: "", label: "Countries" },
-  { value: 23, suffix: "", label: "Awards & Features" },
+  { value: 1, suffix: "", label: "Streetwear identity" },
+  { value: 4, suffix: "", label: "Posters" },
+  { value: 1, suffix: "", label: "Mascot" },
+  { value: 8, suffix: "", label: "Pieces in this series" },
 ] as const;
 
 export const services = [
@@ -45,37 +47,37 @@ export const services = [
     number: "01",
     title: "Brand Identity",
     description:
-      "Marks, type systems, and visual languages built to last beyond a single campaign.",
+      "Marks, color, and a system that can move from a poster to a hoodie without losing its voice.",
   },
   {
     number: "02",
-    title: "Art Direction",
+    title: "Poster Design",
     description:
-      "Image, composition, and tone that give a brand a distinct point of view.",
+      "Film, type, events, and cultural posters composed to be read from across a street.",
   },
   {
     number: "03",
-    title: "Web Design",
+    title: "Mascot & Character",
     description:
-      "Digital spaces with editorial rhythm, clear structure, and memorable pacing.",
+      "A figure with a stance — drawn in the round so it can live on cloth, print, and a pin.",
   },
   {
     number: "04",
-    title: "UI / UX Design",
+    title: "Typography",
     description:
-      "Interfaces that stay considered from the first screen to the last detail.",
+      "Letterforms pushed until they carry the idea: tension, balance, and a point of view.",
   },
   {
     number: "05",
-    title: "Creative Direction",
+    title: "Stationery",
     description:
-      "Guiding teams, shoots, and stories so every output belongs together.",
+      "Cards, letters, and small objects that make a brand feel considered in the hand.",
   },
   {
     number: "06",
-    title: "Campaign Design",
+    title: "Cover Design",
     description:
-      "A single idea carried across print, digital, and physical space.",
+      "Artwork for sound — geometry and motion standing in for a track.",
   },
 ] as const;
 
@@ -90,8 +92,8 @@ export const footerSocials = socials.filter((item) => item.label !== "Dribbble")
 
 export const featured = {
   kicker: "Featured Case",
-  title: "NØR Studio",
+  titleLines: ["Andi Malaj", "Rage"],
   description:
-    "A complete visual identity and digital system built around simplicity, typography and architectural precision.",
-  disciplines: ["Strategy", "Identity", "Art Direction", "Digital"],
+    "A streetwear brand born from the Illyrian helmet. The mark folds that contour into A and M — protection, courage, and a language meant for the street.",
+  disciplines: ["Identity", "Logo", "Poster", "Stationery"],
 } as const;
