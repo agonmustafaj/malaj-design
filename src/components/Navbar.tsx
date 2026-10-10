@@ -1,5 +1,6 @@
 "use client";
 
+import { Mark } from "@/components/Mark";
 import { MobileMenu } from "@/components/MobileMenu";
 import { Magnetic } from "@/components/Magnetic";
 import { nav, site } from "@/data/site";
@@ -23,8 +24,9 @@ export function Navbar() {
       >
         <a
           href="#top"
-          className="inline-flex min-h-11 items-center text-[12px] tracking-[0.16em] whitespace-nowrap sm:text-[13px] sm:tracking-[0.18em]"
+          className="inline-flex min-h-11 items-center gap-2.5 text-[12px] tracking-[0.16em] whitespace-nowrap sm:text-[13px] sm:tracking-[0.18em]"
         >
+          <Mark className="h-7 w-[1.55rem]" />
           {site.mark}
         </a>
 

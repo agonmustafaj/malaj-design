@@ -32,9 +32,9 @@ export function FeaturedProject() {
             id="featured-heading"
             className="mt-4 text-[clamp(3rem,7vw,6.2rem)] leading-[0.88] tracking-[-0.045em]"
           >
-            NØR
+            {featured.titleLines[0]}
             <br />
-            Studio
+            {featured.titleLines[1]}
           </h2>
           <p className="mt-6 max-w-[38ch] text-base leading-relaxed text-paper/75 md:text-lg">
             {featured.description}
@@ -74,6 +74,7 @@ export function FeaturedProject() {
               src={featuredImage.src}
               alt={featuredImage.alt}
               fill
+              quality={60}
               sizes="(min-width: 1024px) 55vw, 100vw"
               className="object-cover"
             />

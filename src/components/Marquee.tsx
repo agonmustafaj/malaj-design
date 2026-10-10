@@ -3,11 +3,11 @@ function PhraseGroup() {
     <div className="flex">
       {Array.from({ length: 4 }, (_, index) => (
         <p key={index} className="marquee-phrase flex items-center px-[0.55em]">
-          <span>Design is not decoration</span>
+          <span>Symbols speak louder</span>
           <span className="px-[0.4em] font-serif text-accent italic" aria-hidden="true">
             —
           </span>
-          <span>it&apos;s communication.</span>
+          <span>than words.</span>
         </p>
       ))}
     </div>
@@ -18,7 +18,7 @@ export function Marquee() {
   return (
     <section
       className="marquee overflow-hidden border-y border-ink/15 py-[clamp(0.85rem,2vw,1.4rem)]"
-      aria-label="Design is not decoration — it's communication."
+      aria-label="Symbols speak louder — than words."
     >
       <div
         aria-hidden="true"

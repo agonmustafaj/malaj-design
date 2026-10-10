@@ -11,7 +11,9 @@ type ProjectItemProps = {
 export function ProjectItem({ project, index }: ProjectItemProps) {
   return (
     <article
+      id={project.id}
       className={cn(
+        "scroll-mt-24",
         index > 0 && "mt-[clamp(2.75rem,6vw,4.5rem)] border-t border-ink/10 pt-[clamp(2.75rem,6vw,4.5rem)]",
       )}
     >
@@ -72,6 +74,7 @@ function Media({
         src={project.image}
         alt={project.imageAlt}
         fill
+        quality={60}
         sizes={sizes}
         style={{ objectPosition: project.position }}
         className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"

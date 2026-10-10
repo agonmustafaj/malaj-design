@@ -23,7 +23,7 @@ export function Philosophy() {
         aria-hidden="true"
       />
       <p className="mt-8 max-w-[28ch] text-base text-muted md:text-lg">
-        Every element should have a reason to exist.
+        Heritage becomes identity, and identity becomes style.
       </p>
     </section>
   );

@@ -33,7 +33,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            Independent practice — est. 2018
+            Branding and Advertising — 2026
           </motion.p>
           <h1 className="hero-title uppercase">
             {lines.map((line) => (
@@ -69,7 +69,7 @@ export function Hero() {
         transition={{ duration: 0.8, ease: EASE, delay: 0.45 }}
       >
         <p className="max-w-[36ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-snug md:col-span-5">
-          I build visual identities, digital experiences and creative systems for ambitious brands.
+          Identity, posters, and visual systems — from a streetwear brand to film, type, and stationery.
         </p>
         <ul className="space-y-1 text-base text-muted md:col-span-4">
           <li>{site.role}</li>
@@ -129,6 +129,7 @@ function HeroPortrait() {
             alt={heroImage.alt}
             fill
             priority
+            quality={60}
             sizes="(min-width: 1024px) 34vw, 100vw"
             className="object-cover object-[center_40%]"
           />

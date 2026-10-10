@@ -17,12 +17,12 @@ export function About() {
         <div className="lg:col-span-5 lg:pt-3">
           <RevealText>
             <p className="max-w-[28ch] text-[clamp(1.35rem,2.2vw,1.9rem)] leading-[1.25] tracking-[-0.02em]">
-              I&apos;m an independent multidisciplinary designer focused on creating bold, thoughtful and memorable visual experiences.
+              I&apos;m Andi Malaj. I design marks, posters, and characters that carry a point of view.
             </p>
           </RevealText>
           <RevealText delay={0.08}>
             <p className="mt-6 max-w-[42ch] text-base leading-relaxed text-muted md:text-lg">
-              I work across brand identity, digital design, art direction and visual systems, helping companies turn ideas into distinctive brands.
+              This series is the work from Branding and Advertising: Andi Malaj Rage, four posters, the lynx mascot, a sound cover, and a stationery study.
             </p>
           </RevealText>
         </div>
@@ -35,6 +35,7 @@ export function About() {
               src={portrait.src}
               alt={portrait.alt}
               fill
+              quality={60}
               sizes="(min-width: 1024px) 420px, 80vw"
               className="scale-[1.34] object-cover"
             />

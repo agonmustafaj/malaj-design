@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Malaj Design — Andi Malaj, Independent Designer & Creative Director";
+export const alt = "Malaj Design — Andi Malaj, Designer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -25,7 +25,7 @@ export default function OpenGraphImage() {
           <div style={{ display: "flex" }}>Creative Designer</div>
         </div>
         <div style={{ display: "flex", fontSize: 26, color: "#5C5C58" }}>
-          Brand identity, web design, art direction
+          Identity, posters, mascot, and stationery
         </div>
       </div>
     ),

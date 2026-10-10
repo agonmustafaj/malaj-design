@@ -59,7 +59,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.name,
-  jobTitle: "Independent Designer & Creative Director",
+  jobTitle: "Designer",
   email: site.email,
   telephone: "+38349588161",
   url: site.url,
@@ -74,11 +74,11 @@ const jsonLd = {
   },
   knowsAbout: [
     "Brand Identity",
-    "Art Direction",
-    "Web Design",
-    "UI/UX Design",
-    "Creative Direction",
-    "Campaign Design",
+    "Poster Design",
+    "Mascot Design",
+    "Typography",
+    "Stationery",
+    "Cover Design",
   ],
 };
 

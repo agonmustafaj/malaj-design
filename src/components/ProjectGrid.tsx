@@ -10,7 +10,7 @@ export function ProjectGrid() {
       <div className="mb-[clamp(2.5rem,6vw,4.5rem)] grid items-end gap-6 lg:grid-cols-12">
         <SectionTitle id="work-heading" className="lg:col-span-7" lines={["Selected", "Work"]} />
         <p className="max-w-[32ch] text-base leading-relaxed text-muted lg:col-span-4 lg:col-start-9 lg:pb-2 lg:text-lg">
-          Five recent collaborations across identity, digital, editorial, and campaign work.
+          Work from Branding and Advertising — a streetwear identity, posters, a mascot, sound, and stationery.
         </p>
       </div>
       <div>
