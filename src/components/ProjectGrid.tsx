@@ -2,8 +2,9 @@ import { ProjectItem } from "@/components/ProjectItem";
 import { projects } from "@/data/projects";
 import Link from "next/link";
 
-export function ProjectGrid({ page = false, limit }: { page?: boolean; limit?: number }) {
+export function ProjectGrid({ page = false, limit = page ? undefined : 6 }: { page?: boolean; limit?: number }) {
   const shown = typeof limit === "number" ? projects.slice(0, limit) : projects;
+  const hasMore = shown.length < projects.length;
 
   return (
     <section
@@ -24,17 +25,22 @@ export function ProjectGrid({ page = false, limit }: { page?: boolean; limit?: n
             Identity, kits, motion, posters, and cover art. Each card is the short version. The project page goes further.
           </p>
         </div>
-        {page ? null : (
-          <Link href="/work" className="text-sm font-medium text-ink underline decoration-ink/20 underline-offset-4 hover:decoration-accent">
-            View all work
-          </Link>
-        )}
       </div>
       <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((project, index) => (
           <ProjectItem key={project.id} project={project} index={index} />
         ))}
       </div>
+      {hasMore ? (
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/work"
+            className="inline-flex min-h-11 items-center rounded-[14px] bg-accent px-6 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+            View more
+          </Link>
+        </div>
+      ) : null}
     </section>
   );
 }
