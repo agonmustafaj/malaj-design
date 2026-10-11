@@ -472,7 +472,7 @@ export function getProject(slug: string) {
 }
 
 export const portrait = {
-  src: "/andi-malaj.png",
+  src: "/andi-malaj.jpg",
   alt: "Portrait of Andi Malaj",
 };
 

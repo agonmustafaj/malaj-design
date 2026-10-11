@@ -59,7 +59,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: site.name,
-  jobTitle: "Designer",
+  jobTitle: site.role,
   email: site.email,
   telephone: "+38349588161",
   url: site.url,
@@ -70,7 +70,7 @@ const jsonLd = {
   },
   address: {
     "@type": "Place",
-    name: "Kosovo",
+    name: "Prishtina, Kosovo",
   },
   knowsAbout: [
     "Brand Identity",
