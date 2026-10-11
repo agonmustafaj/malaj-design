@@ -18,8 +18,6 @@ type CaseStudyProps = {
 export function CaseStudy({ project, index }: CaseStudyProps) {
   const previous = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
-  const cover = project.frames[0];
-  const gallery = project.frames.slice(1);
 
   return (
     <>
@@ -46,9 +44,11 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
           <h1 className="mt-4 max-w-[14ch] text-[clamp(2.8rem,6vw,5rem)] leading-[0.98] font-semibold tracking-[-0.04em]">
             {project.title}
           </h1>
-          <p className="mt-6 max-w-[34ch] text-lg leading-relaxed text-ink/75 md:text-xl">
-            {project.lead}
-          </p>
+          {project.pdf ? null : (
+            <p className="mt-6 max-w-[34ch] text-lg leading-relaxed text-ink/75 md:text-xl">
+              {project.lead}
+            </p>
+          )}
         </header>
 
         {project.video ? (
@@ -69,22 +69,34 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
           </section>
         ) : null}
 
-        <figure className="page-x mt-10 md:mt-14">
-          <div className="mx-auto" style={{ width: frameWidth(cover) }}>
-            <Frame image={cover} priority sizes="(min-width: 1024px) 1140px, 100vw" />
-            <figcaption className="mt-3 font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
-              {cover.caption}
-            </figcaption>
-          </div>
-        </figure>
-
-        {gallery.length > 0 ? (
-          <section className="page-x pb-[clamp(4.25rem,8vw,8rem)]" aria-label="Project images">
+        {project.pdf && project.frames[0] ? (
+          <section className="page-x mt-10 flex flex-col items-center pb-[clamp(4.25rem,8vw,8rem)] md:mt-14">
+            <figure className="w-full max-w-3xl">
+              <Frame image={project.frames[0]} priority sizes="(min-width: 768px) 768px, 100vw" />
+            </figure>
+            <p className="mt-8 max-w-[42ch] text-lg leading-relaxed text-ink/75 md:text-xl">
+              {project.lead}
+            </p>
+            <a
+              href={project.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex min-h-11 items-center rounded-[14px] bg-accent px-6 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              See all in PDF
+            </a>
+          </section>
+        ) : project.frames.length > 0 ? (
+          <section className="page-x mt-10 pb-[clamp(4.25rem,8vw,8rem)] md:mt-14" aria-label="Project images">
             <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">The pieces</p>
-            <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-              {gallery.map((image) => (
+            <div className="mt-6 flex flex-col gap-12">
+              {project.frames.map((image, imageIndex) => (
                 <figure key={image.src}>
-                  <Frame image={image} sizes="(min-width: 1024px) 46vw, (min-width: 640px) 48vw, 100vw" />
+                  <Frame
+                    image={image}
+                    priority={imageIndex === 0 && !project.video}
+                    sizes="(min-width: 1280px) 1200px, 100vw"
+                  />
                   <figcaption className="mt-3 font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
                     {image.caption}
                   </figcaption>
@@ -105,10 +117,6 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
       <JsonLd data={projectGraph(project)} />
     </>
   );
-}
-
-function frameWidth(image: CaseImage) {
-  return `min(100%, calc(min(58vh, 640px) * ${image.width} / ${image.height}))`;
 }
 
 function Frame({

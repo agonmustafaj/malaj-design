@@ -1,22 +1,26 @@
 "use client";
 
 import { stats } from "@/data/site";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export function Statistics() {
   return (
     <ul className="border-t border-ink/15">
       {stats.map((stat) => (
-        <li
-          key={stat.label}
-          aria-label={`${stat.value}${stat.suffix} ${stat.label}`}
-          className="grid grid-cols-[minmax(4.5rem,auto)_1fr] items-baseline gap-x-6 border-b border-ink/15 py-5 md:py-7"
-        >
-          <span className="text-[clamp(2.4rem,5vw,4rem)] leading-none font-medium tracking-[-0.04em] tabular-nums" aria-hidden="true">
-            <CountUp value={stat.value} />
-            {stat.suffix}
-          </span>
-          <span className="text-base md:text-lg">{stat.label}</span>
+        <li key={stat.id} className="border-b border-ink/15">
+          <Link
+            href={`/work?group=${stat.id}`}
+            scroll={false}
+            aria-label={`${stat.value}${stat.suffix} ${stat.label}`}
+            className="grid grid-cols-[minmax(4.5rem,auto)_1fr] items-baseline gap-x-6 py-5 transition-colors hover:text-accent md:py-7"
+          >
+            <span className="text-[clamp(2.4rem,5vw,4rem)] leading-none font-medium tracking-[-0.04em] tabular-nums" aria-hidden="true">
+              <CountUp value={stat.value} />
+              {stat.suffix}
+            </span>
+            <span className="text-base md:text-lg">{stat.label}</span>
+          </Link>
         </li>
       ))}
     </ul>

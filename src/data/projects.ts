@@ -13,9 +13,12 @@ export type ProjectFact = {
   value: string;
 };
 
+export type ProjectGroup = "streetwear" | "posters" | "mascot" | "series";
+
 export type Project = {
   id: string;
   slug: string;
+  group: ProjectGroup;
   number: string;
   title: string;
   category: string;
@@ -35,6 +38,7 @@ export type Project = {
   quote?: { text: string; source: string };
   tracks?: readonly string[];
   video?: { src: string; poster: string };
+  pdf?: string;
   frames: readonly CaseImage[];
 };
 
@@ -42,7 +46,51 @@ export type Project = {
  * Copy and pictures come from the Branding and Advertising presentation,
  * February 2026. Swap a picture by replacing the file in /public/photos.
  */
-const catalog: Project[] = [
+const catalog: Omit<Project, "group">[] = [
+  {
+    id: "kamenica",
+    slug: "kamenica",
+    number: "01",
+    title: "Kamenica",
+    category: "Municipal Identity",
+    year: "2026",
+    description:
+      "A visual identity for the Municipality of Kamenica: a castle crown, an M, and a system for the city.",
+    lead: "A mark for the town. The castle crown holds the letter M, and the red is the color of the place.",
+    story: [
+      "Kamenica is an identity for the municipality. The symbol joins a fortress crown with M, drawn from the castle, the carved reliefs, and the geometry of the town.",
+      "Manrope carries the words. The red is #EF3E24. Clear space is set by the height of the mark, and the logo has a place on a square, an A4 sheet, and a portrait.",
+      "From there it moves onto cards, letters, badges, a flag, banners on the building, and posters that ask the town to unlock Kamenica.",
+    ],
+    image: "/photos/kamenica/01.jpg",
+    imageAlt: "Municipality of Kamenica shield logo above an aerial view of the town",
+    position: "center",
+    layout: "full",
+    href: "/work/kamenica",
+    role: "Identity, logo, print, environmental",
+    context: "Municipal brandbook",
+    facts: [
+      { label: "Year", value: "2026" },
+      { label: "Role", value: "Designer" },
+      { label: "Format", value: "Mark, print, environmental" },
+      { label: "Context", value: "Municipal brandbook" },
+    ],
+    palette: [
+      { name: "Kamenica Red", hex: "#EF3E24" },
+      { name: "White", hex: "#FFFFFF" },
+      { name: "Black", hex: "#000000" },
+    ],
+    pdf: "/kamenica-brandbook.pdf",
+    frames: [
+      {
+        src: "/photos/kamenica/01.jpg",
+        alt: "Municipality of Kamenica shield logo above an aerial photograph of the town",
+        width: 977,
+        height: 2000,
+        caption: "The town, and the mark set over it.",
+      },
+    ],
+  },
   {
     id: "flowpaths",
     slug: "flowpaths",
@@ -98,6 +146,13 @@ const catalog: Project[] = [
         caption: "Global connections, continuous movement, and three paths.",
       },
       {
+        src: "/photos/flowpaths/04.jpg",
+        alt: "Flowpaths palette of Route Red, North White, and Navigation Grey, with Luks Deco Regular",
+        width: 1920,
+        height: 1080,
+        caption: "Route Red, North White, Navigation Grey. Luks Deco, the brand type.",
+      },
+      {
         src: "/photos/flowpaths/05.jpg",
         alt: "Flowpaths poster in a subway station",
         width: 2016,
@@ -119,6 +174,13 @@ const catalog: Project[] = [
         caption: "Stationery. The same red, the same mark, in the hand.",
       },
       {
+        src: "/photos/flowpaths/08.jpg",
+        alt: "Two red Flowpaths business cards lying on gravel",
+        width: 1920,
+        height: 1080,
+        caption: "The card, on the ground.",
+      },
+      {
         src: "/photos/flowpaths/09.jpg",
         alt: "Flowpaths boarding passes for a flight from Dubai to London",
         width: 2016,
@@ -131,6 +193,13 @@ const catalog: Project[] = [
         width: 2016,
         height: 1134,
         caption: "Signature travel kit.",
+      },
+      {
+        src: "/photos/flowpaths/11.jpg",
+        alt: "Front and back of a red Flowpaths shirt reading Flows Perfectly",
+        width: 1920,
+        height: 1080,
+        caption: "Flows perfectly, on the shirt.",
       },
       {
         src: "/photos/flowpaths/12.jpg",
@@ -198,6 +267,13 @@ const catalog: Project[] = [
         caption: "Search, discovery, and digital systems.",
       },
       {
+        src: "/photos/ctrl-fade/03.jpg",
+        alt: "CTRL/FADE logo history from the wordmark through a glitch to a broken mark",
+        width: 1200,
+        height: 1200,
+        caption: "The mark, pulled through the glitch.",
+      },
+      {
         src: "/photos/ctrl-fade/04.jpg",
         alt: "CTRL/FADE logo variants drawn as stretched rules",
         width: 1200,
@@ -219,6 +295,13 @@ const catalog: Project[] = [
         caption: "Posters, in the street.",
       },
       {
+        src: "/photos/ctrl-fade/07.jpg",
+        alt: "CTRL/FADE stationery cards with a glitched wordmark and a photograph",
+        width: 1200,
+        height: 1200,
+        caption: "Stationery. The letters, on paper.",
+      },
+      {
         src: "/photos/ctrl-fade/08.jpg",
         alt: "Black t-shirt with a white glitched CTRL/FADE graphic",
         width: 1200,
@@ -238,6 +321,13 @@ const catalog: Project[] = [
         width: 1200,
         height: 1200,
         caption: "Packing tape. The mark at its smallest job.",
+      },
+      {
+        src: "/photos/ctrl-fade/11.jpg",
+        alt: "Hanging CTRL/FADE banner with a pink glitched wordmark",
+        width: 1200,
+        height: 1200,
+        caption: "A banner, hung from the truss.",
       },
       {
         src: "/photos/ctrl-fade/12.jpg",
@@ -406,7 +496,7 @@ const catalog: Project[] = [
       "Heritage becomes identity, and identity becomes style.",
     ],
     image: "/photos/rage-book/01.jpg",
-    imageAlt: "Black hoodie with the Andi Malaj Rage helmet mark",
+    imageAlt: "Person in a black Andi Malaj Rage hoodie, standing in a station corridor",
     position: "center",
     layout: "full",
     href: "/work/andi-malaj-rage",
@@ -430,10 +520,24 @@ const catalog: Project[] = [
     frames: [
       {
         src: "/photos/rage-book/01.jpg",
-        alt: "Black hoodie with the Andi Malaj Rage helmet mark",
+        alt: "Person in a black Andi Malaj Rage hoodie, standing in a station corridor",
         width: 1920,
         height: 1080,
-        caption: "The hoodie. The mark has to survive a body.",
+        caption: "The hoodie, worn in the corridor.",
+      },
+      {
+        src: "/photos/rage-book/02.jpg",
+        alt: "Logo history from an Illyrian helmet to the letters A and M and the Rage mark",
+        width: 1920,
+        height: 1080,
+        caption: "From the Illyrian helmet to the letters A and M.",
+      },
+      {
+        src: "/photos/rage-book/03.jpg",
+        alt: "About Us page from the Andi Malaj Rage brandbook",
+        width: 1920,
+        height: 1080,
+        caption: "The brand, in its own words.",
       },
       {
         src: "/photos/rage-book/04.jpg",
@@ -441,6 +545,48 @@ const catalog: Project[] = [
         width: 1920,
         height: 1080,
         caption: "The logo grid. Helmet contours drawn into A and M.",
+      },
+      {
+        src: "/photos/rage-book/05.jpg",
+        alt: "Four logo variants of Andi Malaj Rage, including a circular streetwear badge",
+        width: 1920,
+        height: 1080,
+        caption: "The mark, in wordmark and badge.",
+      },
+      {
+        src: "/photos/rage-book/06.jpg",
+        alt: "Andi Malaj Rage color palette in black, off-white, and gray",
+        width: 1920,
+        height: 1080,
+        caption: "Black, off-white, and gray.",
+      },
+      {
+        src: "/photos/rage-book/07.jpg",
+        alt: "Cinzel Black alphabet and numerals for Andi Malaj Rage",
+        width: 1920,
+        height: 1080,
+        caption: "Cinzel, the brand typeface.",
+      },
+      {
+        src: "/photos/rage-book/08.jpg",
+        alt: "Clear space diagram around the Andi Malaj Rage logo, measured by the letter A",
+        width: 1920,
+        height: 1080,
+        caption: "Clear space, set by the height of the A.",
+      },
+      {
+        src: "/photos/rage-book/09.jpg",
+        alt: "Logo positioning guides for square, landscape, and portrait formats",
+        width: 1920,
+        height: 1080,
+        caption: "Where the mark can sit: square, landscape, portrait.",
+      },
+      {
+        src: "/photos/rage-book/10.jpg",
+        alt: "Incorrect uses of the Andi Malaj Rage logo",
+        width: 1920,
+        height: 1080,
+        caption: "Uses that break the mark.",
       },
       {
         src: "/photos/rage-book/11.jpg",
@@ -457,6 +603,13 @@ const catalog: Project[] = [
         caption: "Stationery. The same mark, in the hand.",
       },
       {
+        src: "/photos/rage-book/13.jpg",
+        alt: "Black mailer bag and document sleeve branded Andi Malaj Rage",
+        width: 1920,
+        height: 1080,
+        caption: "The mailer and the sleeve.",
+      },
+      {
         src: "/photos/rage-book/14.jpg",
         alt: "Andi Malaj Rage packaging with a folded shirt, tube, and box",
         width: 1920,
@@ -465,10 +618,17 @@ const catalog: Project[] = [
       },
       {
         src: "/photos/rage-book/15.jpg",
-        alt: "Neck label and tote bag for Andi Malaj Rage",
+        alt: "Neck label inside a hoodie and a tote bag for Andi Malaj Rage",
         width: 1920,
         height: 1080,
-        caption: "The neck label, and the mark blown up on a tote.",
+        caption: "The neck label, and the mark on a tote.",
+      },
+      {
+        src: "/photos/rage-book/16.jpg",
+        alt: "Branded key straps and a roll of tape for Andi Malaj Rage",
+        width: 1920,
+        height: 1080,
+        caption: "Key straps and branded tape.",
       },
       {
         src: "/photos/rage-book/17.jpg",
@@ -629,44 +789,6 @@ const catalog: Project[] = [
     ],
   },
   {
-    id: "shqipni-etnike",
-    slug: "shqipni-etnike",
-    number: "09",
-    title: "Shqipni Etnike",
-    category: "Independence Day Poster",
-    year: "2026",
-    description:
-      "A poster joining medieval and modern Albania across a cracked map: one people, one oath, one flag.",
-    lead: "One people. One oath. One flag. Two figures, centuries apart, reaching across the same map.",
-    story: [
-      "Shqipni Etnike is an independence poster about unity across time. Medieval Albania and a modern identity occupy one sheet, joined by the outline of a map and a cracked field between them.",
-      "The line printed on the poster is “NJI KOMB, NJI BES, NJI FLAMUR.” The image does not explain the sentence. It stages it: a knight and a soldier, heritage and the present, held in the same frame.",
-      "The poster treats ethnic and cultural union as a visual fact: two bodies, one ground, one flag.",
-    ],
-    image: "/photos/shqipni.jpg",
-    imageAlt: "Independence poster of a soldier and a medieval knight reaching toward each other",
-    position: "center",
-    layout: "overlap",
-    href: "/work/shqipni-etnike",
-    role: "Poster design",
-    context: "Independence Day poster",
-    facts: [
-      { label: "Year", value: "2026" },
-      { label: "Role", value: "Poster designer" },
-      { label: "Format", value: "Cultural poster" },
-      { label: "Line", value: "Nji komb, nji bes, nji flamur" },
-    ],
-    frames: [
-      {
-        src: "/photos/shqipni.jpg",
-        alt: "Independence poster of a soldier and a medieval knight reaching toward each other",
-        width: 1053,
-        height: 1489,
-        caption: "Medieval and modern Albania, one map, one oath.",
-      },
-    ],
-  },
-  {
     id: "lynx",
     slug: "lynx",
     number: "10",
@@ -756,6 +878,13 @@ const catalog: Project[] = [
         height: 1200,
         caption: "The sticker, off the page.",
       },
+      {
+        src: "/photos/lynx-book/09.jpg",
+        alt: "Back view of the lynx mascot in a black hoodie and shorts",
+        width: 1200,
+        height: 1200,
+        caption: "The back. The mark between the shoulders.",
+      },
     ],
   },
   {
@@ -798,6 +927,13 @@ const catalog: Project[] = [
       "Reboot Ritual",
     ],
     frames: [
+      {
+        src: "/photos/instant/07.jpg",
+        alt: "Title card for the Instant Crush song cover, over a close view of a disc",
+        width: 1200,
+        height: 1200,
+        caption: "The cover, named.",
+      },
       {
         src: "/photos/instant/08.jpg",
         alt: "Instant Crush cover with a figure cut by shards of light",
@@ -890,11 +1026,27 @@ const catalog: Project[] = [
   },
 ];
 
+const groupById: Record<string, ProjectGroup> = {
+  "andi-malaj-rage": "streetwear",
+  kamenica: "series",
+  lupin: "posters",
+  balance: "posters",
+  "nata-frikes": "posters",
+  lynx: "mascot",
+  flowpaths: "series",
+  "ctrl-fade": "series",
+  stonecastle: "series",
+  "spain-national-team": "series",
+  "instant-crush": "series",
+  "dior-stationery": "series",
+};
+
 export const projects: Project[] = [
   ...catalog.filter((project) => project.id === "andi-malaj-rage"),
   ...catalog.filter((project) => project.id !== "andi-malaj-rage"),
 ].map((project, index) => ({
   ...project,
+  group: groupById[project.id],
   number: String(index + 1).padStart(2, "0"),
 }));
 

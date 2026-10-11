@@ -27,6 +27,7 @@ export const nav = [
 
 export const clients = [
   { label: "RAGE", href: "/work/andi-malaj-rage" },
+  { label: "KAMENICA", href: "/work/kamenica" },
   { label: "FLOWPATHS", href: "/work/flowpaths" },
   { label: "CTRL/FADE", href: "/work/ctrl-fade" },
   { label: "STONECASTLE", href: "/work/stonecastle" },
@@ -34,18 +35,19 @@ export const clients = [
   { label: "LUPIN", href: "/work/lupin" },
   { label: "BALANCE", href: "/work/balance" },
   { label: "NATA FRIKES", href: "/work/nata-frikes" },
-  { label: "SHQIPNI", href: "/work/shqipni-etnike" },
   { label: "LYNX", href: "/work/lynx" },
   { label: "INSTANT CRUSH", href: "/work/instant-crush" },
   { label: "DIOR", href: "/work/dior-stationery" },
 ] as const;
 
-export const stats = [
-  { value: 1, suffix: "", label: "Streetwear identity" },
-  { value: 3, suffix: "+", label: "Posters" },
-  { value: 1, suffix: "", label: "Mascot" },
-  { value: 7, suffix: "+", label: "Pieces in this series" },
+export const workGroups = [
+  { id: "streetwear", value: 1, suffix: "", label: "Streetwear identity" },
+  { id: "posters", value: 3, suffix: "+", label: "Posters" },
+  { id: "mascot", value: 1, suffix: "", label: "Mascot" },
+  { id: "series", value: 7, suffix: "+", label: "Pieces in this series" },
 ] as const;
+
+export const stats = workGroups;
 
 export const services = [
   {
