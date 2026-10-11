@@ -1,7 +1,13 @@
-import { Statistics } from "@/components/Statistics";
 import { portrait } from "@/data/projects";
 import Image from "next/image";
 import Link from "next/link";
+
+const profile = [
+  { label: "Graphic Designer", value: "Bachelor in Integrated Design" },
+  { label: "Brand Identity", value: "Logos & visual systems" },
+  { label: "Visual Communication", value: "Print, digital & campaigns" },
+  { label: "Based in Prishtina", value: "Available for remote collaborations" },
+] as const;
 
 const story = [
   "I'm Andi Malaj, a graphic designer based in Prishtina, Kosovo. I studied Integrated Design at UBT University, specializing in graphic design.",
@@ -64,7 +70,14 @@ export function About({ page = false }: { page?: boolean }) {
               ))}
             </div>
           ) : null}
-          <Statistics />
+          <dl className="border-t border-ink/15">
+            {profile.map((item) => (
+              <div key={item.label} className="grid grid-cols-2 items-start gap-x-6 border-b border-ink/15 py-5 md:py-6">
+                <dt className="text-base font-semibold tracking-[-0.02em] md:text-lg">{item.label}</dt>
+                <dd className="text-base leading-snug md:text-lg">{item.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

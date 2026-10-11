@@ -47,8 +47,6 @@ export const workGroups = [
   { id: "series", value: 7, suffix: "+", label: "Pieces in this series" },
 ] as const;
 
-export const stats = workGroups;
-
 export const services = [
   {
     number: "01",

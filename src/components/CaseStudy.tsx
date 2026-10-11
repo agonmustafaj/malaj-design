@@ -74,9 +74,10 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
             <figure className="w-full max-w-3xl">
               <Frame image={project.frames[0]} priority sizes="(min-width: 768px) 768px, 100vw" />
             </figure>
-            <p className="mt-8 max-w-[42ch] text-lg leading-relaxed text-ink/75 md:text-xl">
-              {project.lead}
-            </p>
+            <div className="mt-8 w-full max-w-[42ch]">
+              <p className="text-lg font-semibold tracking-[-0.02em] md:text-xl">Concept design</p>
+              <p className="mt-3 text-lg leading-relaxed text-ink/75 md:text-xl">{project.lead}</p>
+            </div>
             <a
               href={project.pdf}
               target="_blank"
