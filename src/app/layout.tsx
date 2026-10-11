@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { site } from "@/data/site";
 import { siteGraph } from "@/lib/schema";
+import { siteOgImage } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -50,11 +51,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: site.url,
     siteName: site.studio,
+    images: [siteOgImage],
   },
   twitter: {
     card: "summary_large_image",
     title: site.title,
     description: site.description,
+    images: [siteOgImage.url],
   },
   robots: {
     index: true,

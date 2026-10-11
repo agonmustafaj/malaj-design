@@ -1,7 +1,6 @@
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import type { CaseImage, Project } from "@/data/projects";
-import { projects } from "@/data/projects";
 import { cn } from "@/lib/cn";
 import { projectGraph } from "@/lib/schema";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -12,12 +11,13 @@ const IMAGE_QUALITY = 82;
 
 type CaseStudyProps = {
   project: Project;
-  index: number;
+  list: readonly Project[];
 };
 
-export function CaseStudy({ project, index }: CaseStudyProps) {
-  const previous = projects[(index - 1 + projects.length) % projects.length];
-  const next = projects[(index + 1) % projects.length];
+export function CaseStudy({ project, list }: CaseStudyProps) {
+  const index = Math.max(0, list.findIndex((item) => item.slug === project.slug));
+  const previous = list[(index - 1 + list.length) % list.length];
+  const next = list[(index + 1) % list.length];
 
   return (
     <>
@@ -34,7 +34,7 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
             <p className="font-mono text-xs tracking-[0.16em] text-muted">
               {project.number}
               <span className="mx-2 text-ink/30">/</span>
-              {String(projects.length).padStart(2, "0")}
+              {String(list.length).padStart(2, "0")}
             </p>
           </div>
 

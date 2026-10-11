@@ -13,8 +13,11 @@ function isProjectGroup(value: string | null | undefined): value is ProjectGroup
   return typeof value === "string" && groupIds.has(value);
 }
 
-function piecesFor(id: ProjectGroup) {
-  return projects.filter((project) => project.group === id);
+function sectionProjects(catalog: readonly Project[], id: ProjectGroup) {
+  const matching = catalog.filter((project) => project.group === id);
+  const fresh = matching.filter((project) => project.id.startsWith("dash-"));
+  const rest = matching.filter((project) => !project.id.startsWith("dash-"));
+  return [...fresh, ...rest];
 }
 
 function tileLayout(count: number) {
@@ -28,13 +31,15 @@ function GroupCard({
   label,
   selected,
   onSelect,
+  catalog,
 }: {
   id: ProjectGroup;
   label: string;
   selected: boolean;
   onSelect: (id: ProjectGroup) => void;
+  catalog: readonly Project[];
 }) {
-  const pieces = piecesFor(id);
+  const pieces = sectionProjects(catalog, id);
   const visual = pieces.filter((piece) => piece.image !== "/photos/kamenica/01.jpg");
   const tiles = (visual.length > 0 ? visual : pieces).slice(0, 4);
 
@@ -99,11 +104,17 @@ function PreviewTile({ piece, index }: { piece: Project; index: number }) {
   );
 }
 
-export function ProjectBrowser({ group }: { group?: string }) {
+export function ProjectBrowser({
+  group,
+  catalog = projects,
+}: {
+  group?: string;
+  catalog?: readonly Project[];
+}) {
   const router = useRouter();
   const [pending, setPending] = useState<ProjectGroup | null | undefined>(undefined);
   const active = pending !== undefined ? pending : isProjectGroup(group) ? group : null;
-  const shown = active ? projects.filter((project) => project.group === active) : [];
+  const shown = active ? sectionProjects(catalog, active) : [];
   const activeLabel = workGroups.find((item) => item.id === active)?.label;
 
   useEffect(() => {
@@ -139,6 +150,7 @@ export function ProjectBrowser({ group }: { group?: string }) {
             label={item.label}
             selected={active === item.id}
             onSelect={select}
+            catalog={catalog}
           />
         ))}
       </div>

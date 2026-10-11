@@ -23,6 +23,24 @@ const nextConfig: NextConfig = {
         ],
       },
       {
+        source: "/og.jpg",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/og/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
         source: "/andi-malaj.jpg",
         headers: [
           {
