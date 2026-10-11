@@ -1,27 +1,38 @@
-import { site, socialGroups } from "@/data/site";
+import { Mark } from "@/components/Mark";
+import { nav, site, socialGroups } from "@/data/site";
+import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-ink/15">
-      <div className="page-x grid gap-8 pt-10 md:grid-cols-3 md:items-start md:pt-12">
-        <div>
-          <p className="text-sm tracking-[0.16em]">{site.mark}</p>
-          <p className="mt-1 text-base">{site.name}</p>
-          <p className="text-base text-muted">{site.role}</p>
-        </div>
-        <p className="text-base md:text-center">{site.footerNote}</p>
-        <div className="flex flex-col gap-4 sm:flex-row sm:gap-10 md:justify-end">
+    <footer className="bg-ink text-white">
+      <div className="page-x flex flex-col gap-10 py-12 md:flex-row md:items-start md:justify-between md:py-14">
+        <Link href="/" className="inline-flex items-center gap-3">
+          <Mark className="h-11 w-[2.46rem]" />
+          <span className="text-lg font-semibold tracking-[-0.03em]">Malaj Design</span>
+        </Link>
+        <nav aria-label="Footer">
+          <ul className="flex flex-wrap gap-x-6 gap-y-3 md:pt-1">
+            {nav.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-base text-white/75 hover:text-white">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="flex flex-wrap gap-x-12 gap-y-6">
           {socialGroups.map((group) => (
             <div key={group.label}>
-              <p className="eyebrow">{group.label}</p>
-              <ul className="mt-1">
+              <p className="text-[11px] tracking-[0.16em] text-white/45 uppercase">{group.label}</p>
+              <ul className="mt-3 space-y-1">
                 {group.links.map((item) => (
                   <li key={item.href}>
                     <a
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-11 items-center text-base underline decoration-transparent underline-offset-4 hover:decoration-ink"
+                      className="text-base text-white/75 hover:text-white"
                     >
                       {item.label}
                     </a>
@@ -32,18 +43,8 @@ export function Footer() {
           ))}
         </div>
       </div>
-      <div className="page-x mt-10 flex items-end justify-between gap-4 border-t border-ink/10 py-6">
-        <p className="text-sm text-muted">
-          © 2026 {site.studio}.
-          <br />
-          All rights reserved.
-        </p>
-        <a
-          href="#top"
-          className="inline-flex min-h-11 items-center text-xs tracking-[0.16em] uppercase"
-        >
-          Back to top ↑
-        </a>
+      <div className="page-x border-t border-white/15 py-5">
+        <p className="text-sm text-white/50">© 2026 {site.studio}. {site.location}.</p>
       </div>
     </footer>
   );

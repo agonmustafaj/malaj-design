@@ -16,7 +16,7 @@ import Link from "next/link";
 import { useRef } from "react";
 
 export function FeaturedProject() {
-  const frame = useRef<HTMLDivElement>(null);
+  const frame = useRef<HTMLAnchorElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: frame,
@@ -51,7 +51,6 @@ export function FeaturedProject() {
           <Magnetic className="mt-10 inline-block">
             <Link
               href="/work/andi-malaj-rage"
-              data-cursor="view"
               className="inline-flex min-h-12 items-center gap-3 border border-paper/30 px-6 text-xs tracking-[0.18em] uppercase transition-colors duration-300 hover:bg-paper hover:text-ink"
             >
               Explore Project
@@ -60,9 +59,12 @@ export function FeaturedProject() {
           </Magnetic>
         </div>
 
-        <div
+        <Link
+          href="/work/andi-malaj-rage"
+          data-cursor="view"
           ref={frame}
-          className="relative aspect-[4/5] overflow-hidden bg-ink sm:aspect-[5/4] lg:col-span-7"
+          className="relative block aspect-[4/5] overflow-hidden bg-ink sm:aspect-[5/4] lg:col-span-7"
+          aria-label="View Andi Malaj Rage"
         >
           <motion.div
             className="absolute inset-x-0 -top-[10%] h-[120%]"
@@ -76,12 +78,12 @@ export function FeaturedProject() {
               src={featuredImage.src}
               alt={featuredImage.alt}
               fill
-              quality={85}
+              quality={82}
               sizes="(min-width: 1024px) 55vw, 100vw"
               className="object-cover"
             />
           </motion.div>
-        </div>
+        </Link>
       </div>
     </section>
   );

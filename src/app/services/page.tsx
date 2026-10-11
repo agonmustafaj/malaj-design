@@ -2,7 +2,7 @@ import { Footer } from "@/components/Footer";
 import { Services } from "@/components/Services";
 import type { Metadata } from "next";
 
-const title = "Services — Malaj Design";
+const title = "Services | Malaj Design";
 const description =
   "Brand identity, posters, mascots, typography, stationery, and cover design by Andi Malaj.";
 

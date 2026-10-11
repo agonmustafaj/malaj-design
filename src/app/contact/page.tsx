@@ -2,7 +2,7 @@ import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 
-const title = "Contact — Malaj Design";
+const title = "Contact | Malaj Design";
 const description = "Start a project with Andi Malaj. Email malajandi05@gmail.com or call +383 49 588 161.";
 
 export const metadata: Metadata = {

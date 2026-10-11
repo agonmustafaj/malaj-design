@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import { CustomCursor } from "@/components/CustomCursor";
 import { Navbar } from "@/components/Navbar";
 import { Providers } from "@/components/Providers";
 import { site } from "@/data/site";
@@ -49,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F5F3EE",
+  themeColor: "#ffffff",
   colorScheme: "light",
   width: "device-width",
   initialScale: 1,
@@ -95,7 +94,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </a>
           <div id="top" />
           <Navbar />
-          <CustomCursor />
           {children}
         </Providers>
         <script

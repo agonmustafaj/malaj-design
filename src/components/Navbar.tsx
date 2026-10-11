@@ -2,10 +2,9 @@
 
 import { Mark } from "@/components/Mark";
 import { MobileMenu } from "@/components/MobileMenu";
-import { Magnetic } from "@/components/Magnetic";
 import { nav, site } from "@/data/site";
 import { cn } from "@/lib/cn";
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useCallback, useState } from "react";
 
 export function Navbar() {
@@ -13,50 +12,44 @@ export function Navbar() {
   const close = useCallback(() => setOpen(false), []);
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50", open ? "text-bg" : "text-ink")}>
+    <header className="fixed inset-x-0 top-0 z-50 text-ink">
       <div
         className={cn(
-          "page-x flex h-16 items-center justify-between gap-4 border-b md:h-[4.5rem]",
-          open
-            ? "border-transparent bg-transparent"
-            : "border-ink/10 bg-bg/88 backdrop-blur-md",
+          "page-x flex h-16 items-center justify-between gap-4 md:h-[4.5rem]",
+          open ? "border-transparent bg-white" : "border-b border-ink/8 bg-white/90 backdrop-blur-md",
         )}
       >
-        <a
+        <Link
           href="/"
-          className="inline-flex min-h-11 items-center gap-3 text-[14px] tracking-[0.16em] whitespace-nowrap sm:text-[15px] sm:tracking-[0.18em]"
+          className="inline-flex min-h-11 items-center gap-2.5 text-[15px] font-semibold tracking-[-0.03em] whitespace-nowrap"
         >
-          <Mark className="h-9 w-[2.02rem] sm:h-10 sm:w-[2.24rem]" />
-          {site.mark}
-        </a>
+          <Mark className="h-8 w-[1.8rem] sm:h-9 sm:w-[2.02rem]" />
+          Malaj Design
+        </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-5 md:flex">
           <nav aria-label="Primary">
-            <ul className="flex items-center gap-7">
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="group inline-flex min-h-11 items-center text-[12px] tracking-[0.16em] uppercase"
-                  >
-                    <span className="relative">
+            <ul className="flex items-center gap-5">
+              {nav
+                .filter((item) => item.href !== "/contact")
+                .map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="inline-flex min-h-11 items-center text-sm text-ink/75 transition-colors hover:text-ink"
+                    >
                       {item.label}
-                      <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-current transition-transform duration-300 group-hover:scale-x-100" />
-                    </span>
-                  </a>
-                </li>
-              ))}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </nav>
-          <Magnetic className="inline-block">
-            <a
-              href="/contact"
-              className="inline-flex min-h-11 items-center gap-2 text-[12px] tracking-[0.16em] uppercase"
-            >
-              Let&apos;s talk
-              <ArrowUpRight className="size-4 text-accent" aria-hidden="true" />
-            </a>
-          </Magnetic>
+          <Link
+            href="/contact"
+            className="inline-flex min-h-10 items-center rounded-[14px] bg-accent px-5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+          >
+            Contact
+          </Link>
         </div>
 
         <button

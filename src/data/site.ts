@@ -2,9 +2,9 @@ export const site = {
   name: "Andi Malaj",
   studio: "Malaj Design",
   mark: "MALAJ DESIGN",
-  title: "Malaj Design — Andi Malaj, Graphic Designer",
+  title: "Malaj Design | Andi Malaj, Graphic Designer",
   description:
-    "Andi Malaj is a graphic designer in Prishtina. Branding, visual identity, and digital design — plus posters, a streetwear identity, and a mascot.",
+    "Andi Malaj is a graphic designer in Prishtina. Branding, visual identity, and digital design, plus posters, a streetwear identity, and a mascot.",
   url: "https://malaj.design",
   email: "malajandi05@gmail.com",
   phone: "+383 49 588 161",
@@ -12,12 +12,13 @@ export const site = {
   role: "Graphic Designer",
   location: "Based in Prishtina",
   availability: "Available Worldwide",
-  footerNote: "Available for selected projects — 2026",
+  footerNote: "Available for selected projects, 2026",
 } as const;
 
 export const mailto = `mailto:${site.email}?subject=${encodeURIComponent("Project inquiry")}`;
 
 export const nav = [
+  { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
@@ -25,6 +26,10 @@ export const nav = [
 ] as const;
 
 export const clients = [
+  { label: "FLOWPATHS", href: "/work/flowpaths" },
+  { label: "CTRL/FADE", href: "/work/ctrl-fade" },
+  { label: "STONECASTLE", href: "/work/stonecastle" },
+  { label: "SPAIN", href: "/work/spain-national-team" },
   { label: "RAGE", href: "/work/andi-malaj-rage" },
   { label: "LUPIN", href: "/work/lupin" },
   { label: "BALANCE", href: "/work/balance" },
@@ -59,7 +64,7 @@ export const services = [
     number: "03",
     title: "Mascot & Character",
     description:
-      "A figure with a stance — drawn in the round so it can live on cloth, print, and a pin.",
+      "A figure with a stance, drawn in the round so it can live on cloth, print, and a pin.",
   },
   {
     number: "04",
@@ -77,7 +82,7 @@ export const services = [
     number: "06",
     title: "Cover Design",
     description:
-      "Artwork for sound — geometry and motion standing in for a track.",
+      "Artwork for sound: geometry and motion standing in for a track.",
   },
 ] as const;
 
@@ -102,6 +107,6 @@ export const featured = {
   kicker: "Featured Case",
   titleLines: ["Andi Malaj", "Rage"],
   description:
-    "A streetwear brand born from the Illyrian helmet. The mark folds that contour into A and M — protection, courage, and a language meant for the street.",
+    "A streetwear brand born from the Illyrian helmet. The mark folds that contour into A and M: protection, courage, and a language meant for the street.",
   disciplines: ["Identity", "Logo", "Poster", "Stationery"],
 } as const;

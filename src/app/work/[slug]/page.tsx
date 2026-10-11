@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProject(slug);
   if (!project) return {};
 
-  const title = `${project.title} — Malaj Design`;
+  const title = `${project.title} | Malaj Design`;
   const description = project.description;
   const url = `/work/${project.slug}`;
 

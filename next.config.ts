@@ -5,9 +5,9 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   images: {
     formats: ["image/webp"],
-    deviceSizes: [640, 828, 1080, 1200, 1920, 2560],
-    imageSizes: [256, 384, 640],
-    qualities: [85],
+    deviceSizes: [640, 828, 1080, 1200, 1920],
+    imageSizes: [256, 384, 480, 640],
+    qualities: [75, 82],
     minimumCacheTTL: 2678400,
     remotePatterns: [
       {

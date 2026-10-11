@@ -2,7 +2,7 @@ import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
 import type { Metadata } from "next";
 
-const title = "About — Malaj Design";
+const title = "About | Malaj Design";
 const description =
   "Andi Malaj is a graphic designer in Prishtina. Branding, visual identity, and digital design. Integrated Design at UBT.";
 

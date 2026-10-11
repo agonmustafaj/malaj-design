@@ -19,7 +19,7 @@ export function Testimonial() {
         <span className="h-px w-12 bg-ink" aria-hidden="true" />
         <div>
           <p className="text-base font-medium">Andi Malaj Rage</p>
-          <p className="text-base text-muted">Brandbook — 2025</p>
+          <p className="text-base text-muted">Brandbook, 2025</p>
         </div>
       </footer>
     </section>

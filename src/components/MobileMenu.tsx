@@ -77,7 +77,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="fixed inset-0 z-40 bg-ink text-bg md:hidden"
+          className="fixed inset-0 z-40 bg-white text-ink md:hidden"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={reduced ? undefined : { opacity: 0 }}
@@ -86,11 +86,11 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
           <nav className="page-x flex h-full flex-col justify-end pb-12 pt-24" aria-label="Mobile">
             <ul>
               {nav.map((item, index) => (
-                <li key={item.href} className="border-b border-paper/15">
+                <li key={item.href} className="border-b border-ink/10">
                   <motion.a
                     href={item.href}
                     onClick={onClose}
-                    className="flex min-h-16 items-center text-[clamp(2.6rem,12vw,4.25rem)] leading-none tracking-[-0.045em]"
+                    className="flex min-h-16 items-center text-[clamp(2.1rem,9vw,3.2rem)] leading-none font-semibold tracking-[-0.04em]"
                     initial={reduced ? false : { opacity: 0, y: 28 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.55, ease: EASE, delay: 0.08 + index * 0.06 }}
@@ -108,11 +108,11 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             >
               <a
                 href={`mailto:${site.email}`}
-                className="inline-flex min-h-11 items-center font-serif text-[clamp(1.15rem,4.5vw,1.75rem)] leading-snug italic text-paper/80"
+                className="inline-flex min-h-11 items-center text-lg text-ink/70"
               >
                 {site.email}
               </a>
-              <a href={site.phoneHref} className="inline-flex min-h-11 items-center text-lg text-paper/80">
+              <a href={site.phoneHref} className="inline-flex min-h-11 items-center text-lg text-ink/70">
                 {site.phone}
               </a>
             </motion.div>
