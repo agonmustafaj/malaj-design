@@ -24,9 +24,9 @@ export function Navbar() {
       >
         <a
           href="/"
-          className="inline-flex min-h-11 items-center gap-2.5 text-[12px] tracking-[0.16em] whitespace-nowrap sm:text-[13px] sm:tracking-[0.18em]"
+          className="inline-flex min-h-11 items-center gap-3 text-[14px] tracking-[0.16em] whitespace-nowrap sm:text-[15px] sm:tracking-[0.18em]"
         >
-          <Mark className="h-7 w-[1.55rem]" />
+          <Mark className="h-9 w-[2.02rem] sm:h-10 sm:w-[2.24rem]" />
           {site.mark}
         </a>
 
