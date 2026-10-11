@@ -1,6 +1,3 @@
-"use client";
-
-import { Magnetic } from "@/components/Magnetic";
 import { mailto, site } from "@/data/site";
 import { ArrowUpRight } from "lucide-react";
 
@@ -10,7 +7,7 @@ export function ContactCTA({ page = false }: { page?: boolean }) {
   return (
     <section
       id="contact"
-      className={page ? "pt-8 md:pt-14" : "pt-[clamp(4.25rem,8vw,8rem)]"}
+      className={page ? "pt-8 md:pt-14" : "defer-render pt-[clamp(4.25rem,8vw,8rem)]"}
       aria-labelledby="contact-heading"
     >
       <div className="page-x">
@@ -24,20 +21,18 @@ export function ContactCTA({ page = false }: { page?: boolean }) {
       </div>
 
       <div className="mt-[clamp(2.5rem,6vw,4.5rem)] border-y border-ink">
-        <Magnetic className="block" strength={0.06}>
-          <a
-            href={mailto}
-            className="group flex min-h-20 items-center justify-between gap-6 py-8 page-x transition-colors duration-300 hover:bg-ink hover:text-white md:min-h-28"
-          >
-            <span className="text-[clamp(1.4rem,3vw,2.4rem)] leading-none font-semibold tracking-[-0.03em]">
-              Start a project
-            </span>
-            <ArrowUpRight
-              className="size-8 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 md:size-12"
-              aria-hidden="true"
-            />
-          </a>
-        </Magnetic>
+        <a
+          href={mailto}
+          className="group flex min-h-20 items-center justify-between gap-6 py-8 page-x transition-colors duration-300 hover:bg-ink hover:text-white md:min-h-28"
+        >
+          <span className="text-[clamp(1.4rem,3vw,2.4rem)] leading-none font-semibold tracking-[-0.03em]">
+            Start a project
+          </span>
+          <ArrowUpRight
+            className="size-8 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 md:size-12"
+            aria-hidden="true"
+          />
+        </a>
       </div>
 
       <div className="page-x flex flex-col gap-3 py-10">

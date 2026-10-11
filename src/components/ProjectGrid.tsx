@@ -15,12 +15,21 @@ export function ProjectGrid({ page = false, limit = page ? undefined : 6 }: { pa
       <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-[11px] tracking-[0.18em] text-muted uppercase">Selected work</p>
-          <h2
-            id="work-heading"
-            className={page ? "mt-3 text-[clamp(2.4rem,5vw,3.6rem)] leading-none font-semibold tracking-[-0.035em]" : "mt-3 text-[clamp(2rem,4vw,2.8rem)] leading-none font-semibold tracking-[-0.035em]"}
-          >
-            {page ? "All projects" : "Recent projects"}
-          </h2>
+          {page ? (
+            <h1
+              id="work-heading"
+              className="mt-3 text-[clamp(2.4rem,5vw,3.6rem)] leading-none font-semibold tracking-[-0.035em]"
+            >
+              All projects
+            </h1>
+          ) : (
+            <h2
+              id="work-heading"
+              className="mt-3 text-[clamp(2rem,4vw,2.8rem)] leading-none font-semibold tracking-[-0.035em]"
+            >
+              Recent projects
+            </h2>
+          )}
           <p className="mt-4 max-w-[42ch] text-sm leading-relaxed text-muted md:text-base">
             Identity, kits, motion, posters, and cover art. Each card is the short version. The project page goes further.
           </p>

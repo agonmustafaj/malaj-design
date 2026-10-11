@@ -1,17 +1,11 @@
 import { Footer } from "@/components/Footer";
 import { Services } from "@/components/Services";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-const title = "Services | Malaj Design";
 const description =
-  "Brand identity, posters, mascots, typography, stationery, and cover design by Andi Malaj.";
+  "Brand identity, posters, mascots, typography, stationery, and cover design by Andi Malaj in Prishtina.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/services" },
-  openGraph: { title, description, url: "/services" },
-};
+export const metadata = pageMetadata("Services", description, "/services");
 
 export default function ServicesPage() {
   return (

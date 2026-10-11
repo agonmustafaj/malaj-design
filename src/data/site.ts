@@ -4,8 +4,8 @@ export const site = {
   mark: "MALAJ DESIGN",
   title: "Malaj Design | Andi Malaj, Graphic Designer",
   description:
-    "Andi Malaj is a graphic designer in Prishtina. Branding, visual identity, and digital design, plus posters, a streetwear identity, and a mascot.",
-  url: "https://malaj.design",
+    "Andi Malaj is a graphic designer in Prishtina, Kosovo. Branding, visual identity, posters, streetwear, and digital design.",
+  url: "https://malaj-design.netlify.app",
   email: "malajandi05@gmail.com",
   phone: "+383 49 588 161",
   phoneHref: "tel:+38349588161",
@@ -26,11 +26,11 @@ export const nav = [
 ] as const;
 
 export const clients = [
+  { label: "RAGE", href: "/work/andi-malaj-rage" },
   { label: "FLOWPATHS", href: "/work/flowpaths" },
   { label: "CTRL/FADE", href: "/work/ctrl-fade" },
   { label: "STONECASTLE", href: "/work/stonecastle" },
   { label: "SPAIN", href: "/work/spain-national-team" },
-  { label: "RAGE", href: "/work/andi-malaj-rage" },
   { label: "LUPIN", href: "/work/lupin" },
   { label: "BALANCE", href: "/work/balance" },
   { label: "NATA FRIKES", href: "/work/nata-frikes" },
@@ -42,9 +42,9 @@ export const clients = [
 
 export const stats = [
   { value: 1, suffix: "", label: "Streetwear identity" },
-  { value: 4, suffix: "", label: "Posters" },
+  { value: 3, suffix: "+", label: "Posters" },
   { value: 1, suffix: "", label: "Mascot" },
-  { value: 8, suffix: "", label: "Pieces in this series" },
+  { value: 7, suffix: "+", label: "Pieces in this series" },
 ] as const;
 
 export const services = [

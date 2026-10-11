@@ -1,17 +1,11 @@
 import { About } from "@/components/About";
 import { Footer } from "@/components/Footer";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-const title = "About | Malaj Design";
 const description =
-  "Andi Malaj is a graphic designer in Prishtina. Branding, visual identity, and digital design. Integrated Design at UBT.";
+  "Andi Malaj is a graphic designer in Prishtina, Kosovo. Branding, visual identity, and digital design. Integrated Design at UBT.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/about" },
-  openGraph: { title, description, url: "/about" },
-};
+export const metadata = pageMetadata("About", description, "/about");
 
 export default function AboutPage() {
   return (

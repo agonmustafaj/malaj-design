@@ -1,5 +1,6 @@
 import { CaseStudy } from "@/components/CaseStudy";
 import { getProject, projects } from "@/data/projects";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -16,28 +17,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const project = getProject(slug);
   if (!project) return {};
 
-  const title = `${project.title} | Malaj Design`;
   const description = project.description;
   const url = `/work/${project.slug}`;
 
   return {
-    title,
-    description,
-    alternates: { canonical: url },
+    ...pageMetadata(project.title, description, url),
     openGraph: {
-      title,
+      title: `${project.title} | Malaj Design`,
       description,
       url,
       type: "article",
-      images: [{ url: project.image, alt: project.imageAlt }],
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [project.image],
-    },
-  };
+  } satisfies Metadata;
 }
 
 export default async function ProjectPage({ params }: PageProps) {

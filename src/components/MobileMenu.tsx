@@ -1,17 +1,16 @@
 "use client";
 
 import { nav, site } from "@/data/site";
-import { EASE } from "@/lib/motion";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 type MobileMenuProps = {
   open: boolean;
   onClose: () => void;
+  onNavigate: (event: React.MouseEvent<HTMLAnchorElement>, href: string) => void;
 };
 
-export function MobileMenu({ open, onClose }: MobileMenuProps) {
-  const reduced = useReducedMotion();
+export function MobileMenu({ open, onClose, onNavigate }: MobileMenuProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -68,57 +67,41 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
     };
   }, [open, onClose]);
 
+  if (!open) return null;
+
   return (
-    <AnimatePresence>
-      {open ? (
-        <motion.div
-          ref={dialogRef}
-          id="mobile-menu"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu"
-          className="fixed inset-0 z-40 bg-white text-ink md:hidden"
-          initial={reduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={reduced ? undefined : { opacity: 0 }}
-          transition={{ duration: 0.35, ease: EASE }}
-        >
-          <nav className="page-x flex h-full flex-col justify-end pb-12 pt-24" aria-label="Mobile">
-            <ul>
-              {nav.map((item, index) => (
-                <li key={item.href} className="border-b border-ink/10">
-                  <motion.a
-                    href={item.href}
-                    onClick={onClose}
-                    className="flex min-h-16 items-center text-[clamp(2.1rem,9vw,3.2rem)] leading-none font-semibold tracking-[-0.04em]"
-                    initial={reduced ? false : { opacity: 0, y: 28 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55, ease: EASE, delay: 0.08 + index * 0.06 }}
-                  >
-                    {item.label}
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
-            <motion.div
-              className="mt-10 flex flex-col gap-2"
-              initial={reduced ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.4 }}
-            >
-              <a
-                href={`mailto:${site.email}`}
-                className="inline-flex min-h-11 items-center text-lg text-ink/70"
+    <div
+      ref={dialogRef}
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu"
+      className="menu-in fixed inset-0 z-40 bg-white text-ink md:hidden"
+    >
+      <nav className="page-x flex h-full flex-col justify-end pb-12 pt-24" aria-label="Mobile">
+        <ul>
+          {nav.map((item) => (
+            <li key={item.href} className="border-b border-ink/10">
+              <Link
+                href={item.href}
+                scroll={false}
+                onClick={(event) => onNavigate(event, item.href)}
+                className="flex min-h-16 items-center text-[clamp(2.1rem,9vw,3.2rem)] leading-none font-semibold tracking-[-0.04em]"
               >
-                {site.email}
-              </a>
-              <a href={site.phoneHref} className="inline-flex min-h-11 items-center text-lg text-ink/70">
-                {site.phone}
-              </a>
-            </motion.div>
-          </nav>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className="mt-10 flex flex-col gap-2">
+          <a href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center text-lg text-ink/70">
+            {site.email}
+          </a>
+          <a href={site.phoneHref} className="inline-flex min-h-11 items-center text-lg text-ink/70">
+            {site.phone}
+          </a>
+        </div>
+      </nav>
+    </div>
   );
 }

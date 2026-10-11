@@ -7,7 +7,7 @@ export function Services({ page = false }: { page?: boolean }) {
   return (
     <section
       id="services"
-      className={page ? "pt-10 pb-20 md:pt-16" : "pb-20 md:pb-28"}
+      className={page ? "pt-10 pb-20 md:pt-16" : "defer-render pb-20 md:pb-28"}
       aria-labelledby="services-heading"
     >
       <div className="page-x">

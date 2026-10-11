@@ -5,22 +5,53 @@ import { MobileMenu } from "@/components/MobileMenu";
 import { nav, site } from "@/data/site";
 import { cn } from "@/lib/cn";
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
+
+function scrollToTop(smooth: boolean) {
+  const root = document.documentElement;
+  const previous = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  window.scrollTo({ top: 0, left: 0, behavior: smooth ? "smooth" : "auto" });
+  root.style.scrollBehavior = previous;
+}
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
+  const pathname = usePathname();
+  const pendingTop = useRef(false);
+
+  useEffect(() => {
+    if (!pendingTop.current) return;
+    pendingTop.current = false;
+    scrollToTop(false);
+    const frame = requestAnimationFrame(() => scrollToTop(false));
+    return () => cancelAnimationFrame(frame);
+  }, [pathname]);
+
+  const onNavigate = (event: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    close();
+    if (pathname === href) {
+      event.preventDefault();
+      scrollToTop(true);
+      return;
+    }
+    pendingTop.current = true;
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 text-ink">
       <div
         className={cn(
-          "page-x flex h-16 items-center justify-between gap-4 md:h-[4.5rem]",
-          open ? "border-transparent bg-white" : "border-b border-ink/8 bg-white/90 backdrop-blur-md",
+          "relative z-50 page-x flex h-16 items-center justify-between gap-4 bg-white md:h-[4.5rem]",
+          open ? "border-transparent" : "border-b border-ink/8",
         )}
       >
         <Link
           href="/"
+          scroll={false}
+          onClick={(event) => onNavigate(event, "/")}
           className="inline-flex min-h-11 items-center gap-2.5 text-[15px] font-semibold tracking-[-0.03em] whitespace-nowrap"
         >
           <Mark className="h-8 w-[1.8rem] sm:h-9 sm:w-[2.02rem]" />
@@ -36,6 +67,8 @@ export function Navbar() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
+                      scroll={false}
+                      onClick={(event) => onNavigate(event, item.href)}
                       className="inline-flex min-h-11 items-center text-sm text-ink/75 transition-colors hover:text-ink"
                     >
                       {item.label}
@@ -46,6 +79,8 @@ export function Navbar() {
           </nav>
           <Link
             href="/contact"
+            scroll={false}
+            onClick={(event) => onNavigate(event, "/contact")}
             className="inline-flex min-h-10 items-center rounded-[14px] bg-accent px-5 text-sm font-medium text-white transition-opacity hover:opacity-90"
           >
             Contact
@@ -75,7 +110,7 @@ export function Navbar() {
           />
         </button>
       </div>
-      <MobileMenu open={open} onClose={close} />
+      <MobileMenu open={open} onClose={close} onNavigate={onNavigate} />
     </header>
   );
 }

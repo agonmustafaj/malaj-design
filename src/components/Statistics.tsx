@@ -1,7 +1,6 @@
 "use client";
 
 import { stats } from "@/data/site";
-import { useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 export function Statistics() {
@@ -26,32 +25,46 @@ export function Statistics() {
 
 function CountUp({ value }: { value: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
-  const reduced = useReducedMotion();
   const [current, setCurrent] = useState(0);
-  const shown = reduced && inView ? value : current;
 
   useEffect(() => {
-    if (!inView || reduced) return;
+    const node = ref.current;
+    if (!node) return;
 
     let frame = 0;
-    const start = performance.now();
-    const duration = 1100;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        observer.disconnect();
 
-    const tick = (now: number) => {
-      const progress = Math.min(1, (now - start) / duration);
-      const eased = 1 - (1 - progress) ** 3;
-      setCurrent(Math.round(eased * value));
-      if (progress < 1) frame = requestAnimationFrame(tick);
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          setCurrent(value);
+          return;
+        }
+
+        const start = performance.now();
+        const duration = 1100;
+        const tick = (now: number) => {
+          const progress = Math.min(1, (now - start) / duration);
+          const eased = 1 - (1 - progress) ** 3;
+          setCurrent(Math.round(eased * value));
+          if (progress < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
+      },
+      { rootMargin: "0px 0px -10% 0px" },
+    );
+
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
     };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [inView, reduced, value]);
+  }, [value]);
 
   return (
     <span ref={ref} className="inline-block min-w-[2ch] text-right">
-      {shown}
+      {current}
     </span>
   );
 }

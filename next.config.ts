@@ -3,19 +3,35 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
+  poweredByHeader: false,
   images: {
-    formats: ["image/webp"],
+    formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 828, 1080, 1200, 1920],
     imageSizes: [256, 384, 480, 640],
     qualities: [75, 82],
     minimumCacheTTL: 2678400,
-    remotePatterns: [
+  },
+  async headers() {
+    return [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-        pathname: "/**",
+        source: "/photos/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, stale-while-revalidate=86400",
+          },
+        ],
       },
-    ],
+      {
+        source: "/andi-malaj.jpg",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=2592000, stale-while-revalidate=86400",
+          },
+        ],
+      },
+    ];
   },
   turbopack: {
     rules: {

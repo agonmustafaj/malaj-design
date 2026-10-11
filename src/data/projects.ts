@@ -42,7 +42,7 @@ export type Project = {
  * Copy and pictures come from the Branding and Advertising presentation,
  * February 2026. Swap a picture by replacing the file in /public/photos.
  */
-export const projects: Project[] = [
+const catalog: Project[] = [
   {
     id: "flowpaths",
     slug: "flowpaths",
@@ -339,6 +339,13 @@ export const projects: Project[] = [
     ],
     frames: [
       {
+        src: "/photos/spain/motion.webp",
+        alt: "Animated turn of the Spain jersey redesign",
+        width: 1080,
+        height: 1080,
+        caption: "The kit, in motion.",
+      },
+      {
         src: "/photos/spain/01.jpg",
         alt: "Spain home jersey redesign with a red and blue architectural pattern",
         width: 2048,
@@ -379,13 +386,6 @@ export const projects: Project[] = [
         width: 2048,
         height: 2560,
         caption: "Training kit. Stone gray, violet, and blue.",
-      },
-      {
-        src: "/photos/spain/motion.webp",
-        alt: "Animated turn of the Spain jersey redesign",
-        width: 1080,
-        height: 1080,
-        caption: "The kit, in motion.",
       },
     ],
   },
@@ -889,6 +889,14 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+export const projects: Project[] = [
+  ...catalog.filter((project) => project.id === "andi-malaj-rage"),
+  ...catalog.filter((project) => project.id !== "andi-malaj-rage"),
+].map((project, index) => ({
+  ...project,
+  number: String(index + 1).padStart(2, "0"),
+}));
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

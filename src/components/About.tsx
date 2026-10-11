@@ -17,7 +17,7 @@ export function About({ page = false }: { page?: boolean }) {
   return (
     <section
       id="about"
-      className={page ? "page-x pt-8 pb-[clamp(4.25rem,8vw,8rem)] md:pt-14" : "section-y page-x"}
+      className={page ? "page-x pt-8 pb-[clamp(4.25rem,8vw,8rem)] md:pt-14" : "section-y page-x defer-render"}
       aria-labelledby="about-heading"
     >
       <div className="grid gap-8 lg:grid-cols-12 lg:gap-6">

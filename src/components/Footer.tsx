@@ -31,7 +31,8 @@ export function Footer() {
                     <a
                       href={item.href}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="me noopener noreferrer"
+                      aria-label={item.label === "Instagram" ? `${group.label} on Instagram` : undefined}
                       className="text-base text-white/75 hover:text-white"
                     >
                       {item.label}

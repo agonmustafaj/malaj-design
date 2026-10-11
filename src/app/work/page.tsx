@@ -1,17 +1,14 @@
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
 import { ProjectGrid } from "@/components/ProjectGrid";
-import type { Metadata } from "next";
+import { projects } from "@/data/projects";
+import { workList } from "@/lib/schema";
+import { pageMetadata } from "@/lib/seo";
 
-const title = "Work | Malaj Design";
 const description =
   "Selected work by Andi Malaj: a streetwear identity, posters, a mascot, sound artwork, and a stationery study.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: "/work" },
-  openGraph: { title, description, url: "/work" },
-};
+export const metadata = pageMetadata("Work", description, "/work");
 
 export default function WorkPage() {
   return (
@@ -20,6 +17,7 @@ export default function WorkPage() {
         <ProjectGrid page />
       </main>
       <Footer />
+      <JsonLd data={workList(projects)} />
     </>
   );
 }

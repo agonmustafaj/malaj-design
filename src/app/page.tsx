@@ -2,8 +2,11 @@ import { About } from "@/components/About";
 import { ContactCTA } from "@/components/ContactCTA";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { JsonLd } from "@/components/JsonLd";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { Services } from "@/components/Services";
+import { projects } from "@/data/projects";
+import { workList } from "@/lib/schema";
 import Link from "next/link";
 
 export default function Home() {
@@ -34,6 +37,7 @@ export default function Home() {
         <ContactCTA />
       </main>
       <Footer />
+      <JsonLd data={workList(projects.slice(0, 6))} />
     </>
   );
 }

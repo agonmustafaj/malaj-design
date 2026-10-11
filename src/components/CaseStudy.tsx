@@ -1,8 +1,9 @@
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
 import type { CaseImage, Project } from "@/data/projects";
 import { projects } from "@/data/projects";
-import { site } from "@/data/site";
 import { cn } from "@/lib/cn";
+import { projectGraph } from "@/lib/schema";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,88 +53,37 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
 
         <figure className="page-x mt-10 md:mt-14">
           <div className="mx-auto" style={{ width: frameWidth(cover) }}>
-            <Frame image={cover} priority sizes="(min-width: 1024px) 920px, 100vw" />
+            <Frame image={cover} priority sizes="(min-width: 1024px) 1140px, 100vw" />
             <figcaption className="mt-3 font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
               {cover.caption}
             </figcaption>
           </div>
         </figure>
 
-        <section className="page-x section-y grid gap-12 lg:grid-cols-12 lg:gap-8">
-          <aside className="lg:col-span-4 lg:self-start lg:sticky lg:top-28">
-            <dl className="border-t border-ink/15">
-              {project.facts.map((fact) => (
-                <div key={fact.label} className="grid grid-cols-[7.5rem_1fr] gap-4 border-b border-ink/15 py-4">
-                  <dt className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">{fact.label}</dt>
-                  <dd className="text-base leading-snug">{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
-            {project.palette ? (
-              <ul className="mt-8 flex flex-wrap gap-5" aria-label="Palette">
-                {project.palette.map((swatch) => (
-                  <li key={swatch.hex} className="flex items-center gap-3">
-                    <span
-                      className="size-8 border border-ink/15"
-                      style={{ backgroundColor: swatch.hex }}
-                      aria-hidden="true"
-                    />
-                    <span>
-                      <span className="block text-sm">{swatch.name}</span>
-                      <span className="font-mono text-[11px] tracking-[0.08em] text-muted">{swatch.hex}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-          </aside>
-
-          <div className="lg:col-span-7 lg:col-start-6">
-            <div className="space-y-6 text-[1.0625rem] leading-[1.7] text-ink/90 md:text-lg">
-              {project.story.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+        {gallery.length > 0 ? (
+          <section className="page-x pb-[clamp(4.25rem,8vw,8rem)]" aria-label="Project images">
+            <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">The pieces</p>
+            <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+              {gallery.map((image) => (
+                <figure key={image.src}>
+                  <Frame image={image} sizes="(min-width: 1024px) 46vw, (min-width: 640px) 48vw, 100vw" />
+                  <figcaption className="mt-3 font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
+                    {image.caption}
+                  </figcaption>
+                </figure>
               ))}
             </div>
-
-            {project.quote ? (
-              <blockquote className="mt-12 border-t border-ink/15 pt-8">
-                <p className="max-w-[28ch] font-serif text-[clamp(1.7rem,3vw,2.5rem)] leading-[1.15] tracking-[-0.03em] italic">
-                  {project.quote.text}
-                </p>
-                <footer className="mt-5 font-mono text-[11px] tracking-[0.14em] text-muted uppercase">
-                  {project.quote.source}
-                </footer>
-              </blockquote>
-            ) : null}
-
-            {project.tracks ? (
-              <div className="mt-12">
-                <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">
-                  Printed on the artwork
-                </p>
-                <ol className="mt-4 border-t border-ink/15 sm:grid sm:grid-cols-2 sm:gap-x-10">
-                  {project.tracks.map((track, trackIndex) => (
-                    <li
-                      key={track}
-                      className="flex items-baseline gap-4 border-b border-ink/10 py-3"
-                    >
-                      <span className="font-mono text-[11px] text-muted">
-                        {String(trackIndex + 1).padStart(2, "0")}
-                      </span>
-                      <span>{track}</span>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            ) : null}
-          </div>
-        </section>
+          </section>
+        ) : null}
 
         {project.video ? (
           <section className="page-x pb-12" aria-label="Project film">
             <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">Film</p>
             <video
-              className="mx-auto mt-6 block max-h-[58vh] w-full max-w-4xl bg-black object-contain"
+              className="mx-auto mt-6 block aspect-video max-h-[58vh] w-full max-w-4xl bg-black object-contain"
+              autoPlay
+              muted
+              loop
               controls
               playsInline
               preload="metadata"
@@ -141,30 +91,6 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
             >
               <source src={project.video.src} type="video/mp4" />
             </video>
-          </section>
-        ) : null}
-
-        {gallery.length > 0 ? (
-          <section className="page-x pb-[clamp(4.25rem,8vw,8rem)]" aria-label="Project images">
-            <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">The pieces</p>
-            <div className="mt-6 grid gap-x-6 gap-y-10 md:grid-cols-12">
-              {gallery.map((image) => {
-                const wide = image.width / image.height > 1.2;
-                return (
-                  <figure key={image.src} className={wide ? "md:col-span-12" : "md:col-span-6"}>
-                    <div className="mx-auto" style={{ width: frameWidth(image) }}>
-                      <Frame
-                        image={image}
-                        sizes={wide ? "(min-width: 1024px) 920px, 100vw" : "(min-width: 768px) 46vw, 100vw"}
-                      />
-                      <figcaption className="mt-3 font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
-                        {image.caption}
-                      </figcaption>
-                    </div>
-                  </figure>
-                );
-              })}
-            </div>
           </section>
         ) : null}
 
@@ -176,20 +102,7 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
         </nav>
       </main>
       <Footer />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "CreativeWork",
-            name: project.title,
-            description: project.description,
-            creator: { "@type": "Person", name: site.name },
-            dateCreated: project.year,
-            url: `${site.url}/work/${project.slug}`,
-          }),
-        }}
-      />
+      <JsonLd data={projectGraph(project)} />
     </>
   );
 }
@@ -218,8 +131,11 @@ function Frame({
         <img
           src={image.src}
           alt={image.alt}
-          loading="lazy"
+          width={image.width}
+          height={image.height}
+          loading={priority ? "eager" : "lazy"}
           decoding="async"
+          fetchPriority={priority ? "high" : "low"}
           className="absolute inset-0 h-full w-full object-cover"
         />
       ) : (

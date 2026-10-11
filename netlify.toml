@@ -3,3 +3,13 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+[[headers]]
+  for = "/photos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
+
+[[headers]]
+  for = "/andi-malaj.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"
