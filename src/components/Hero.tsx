@@ -18,11 +18,16 @@ export function Hero() {
           <div className="mt-7 flex items-center gap-5">
             <Link
               href="/work"
+              scroll={false}
               className="inline-flex min-h-11 items-center rounded-[14px] bg-accent px-5 text-sm font-medium text-white transition-opacity hover:opacity-90"
             >
               View Work
             </Link>
-            <Link href="/about" className="inline-flex min-h-11 items-center text-sm text-ink/80 hover:text-ink">
+            <Link
+              href="/about"
+              scroll={false}
+              className="inline-flex min-h-11 items-center text-sm text-ink/80 hover:text-ink"
+            >
               About
             </Link>
           </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 export function ProjectItem({ project }: { project: Project; index?: number }) {
   return (
     <article>
-      <Link href={project.href} className="group block" aria-label={`View ${project.title}`}>
+      <Link href={project.href} scroll={false} className="group block" aria-label={`View ${project.title}`}>
         <div data-cursor="view" className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#f3f3f3]">
           <Image
             src={project.image}

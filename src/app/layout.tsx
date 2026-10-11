@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import { Navbar } from "@/components/Navbar";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { site } from "@/data/site";
 import { siteGraph } from "@/lib/schema";
 import "./globals.css";
@@ -86,6 +87,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <div id="top" />
+        <ScrollToTop />
         <Navbar />
         {children}
         <JsonLd data={siteGraph()} />

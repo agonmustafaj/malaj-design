@@ -51,6 +51,24 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
           </p>
         </header>
 
+        {project.video ? (
+          <section className="page-x mt-10 md:mt-14" aria-label="Project film">
+            <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">Film</p>
+            <video
+              className="mx-auto mt-6 block aspect-video max-h-[58vh] w-full max-w-4xl bg-black object-contain"
+              autoPlay
+              muted
+              loop
+              controls
+              playsInline
+              preload="metadata"
+              poster={project.video.poster}
+            >
+              <source src={project.video.src} type="video/mp4" />
+            </video>
+          </section>
+        ) : null}
+
         <figure className="page-x mt-10 md:mt-14">
           <div className="mx-auto" style={{ width: frameWidth(cover) }}>
             <Frame image={cover} priority sizes="(min-width: 1024px) 1140px, 100vw" />
@@ -73,24 +91,6 @@ export function CaseStudy({ project, index }: CaseStudyProps) {
                 </figure>
               ))}
             </div>
-          </section>
-        ) : null}
-
-        {project.video ? (
-          <section className="page-x pb-12" aria-label="Project film">
-            <p className="font-mono text-[11px] tracking-[0.16em] text-muted uppercase">Film</p>
-            <video
-              className="mx-auto mt-6 block aspect-video max-h-[58vh] w-full max-w-4xl bg-black object-contain"
-              autoPlay
-              muted
-              loop
-              controls
-              playsInline
-              preload="metadata"
-              poster={project.video.poster}
-            >
-              <source src={project.video.src} type="video/mp4" />
-            </video>
           </section>
         ) : null}
 
@@ -165,6 +165,7 @@ function Neighbor({
   return (
     <Link
       href={project.href}
+      scroll={false}
       className={cn(
         "group flex min-h-44 flex-col justify-between gap-8 border-ink/15 px-[var(--page-x)] py-8 transition-colors duration-300 hover:bg-ink hover:text-bg md:min-h-56 md:py-12",
         align === "end" ? "border-t md:border-t-0 md:border-l md:items-end md:text-right" : "border-b md:border-b-0",
