@@ -4,10 +4,7 @@ import type { CaseImage, Project } from "@/data/projects";
 import { cn } from "@/lib/cn";
 import { projectGraph } from "@/lib/schema";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-
-const IMAGE_QUALITY = 82;
 
 type CaseStudyProps = {
   project: Project;
@@ -72,7 +69,7 @@ export function CaseStudy({ project, list }: CaseStudyProps) {
         {project.pdf && project.frames[0] ? (
           <section className="page-x mt-10 flex flex-col items-center pb-[clamp(4.25rem,8vw,8rem)] md:mt-14">
             <figure className="w-full max-w-3xl">
-              <Frame image={project.frames[0]} priority sizes="(min-width: 768px) 768px, 100vw" />
+              <Frame image={project.frames[0]} priority />
             </figure>
             <div className="mt-8 w-full max-w-[42ch]">
               <p className="text-lg font-semibold tracking-[-0.02em] md:text-xl">Concept design</p>
@@ -93,11 +90,7 @@ export function CaseStudy({ project, list }: CaseStudyProps) {
             <div className="mt-6 flex flex-col gap-12">
               {project.frames.map((image, imageIndex) => (
                 <figure key={image.src}>
-                  <Frame
-                    image={image}
-                    priority={imageIndex === 0 && !project.video}
-                    sizes="(min-width: 1280px) 1200px, 100vw"
-                  />
+                  <Frame image={image} priority={imageIndex === 0 && !project.video} />
                   <figcaption className="mt-3 font-mono text-[11px] tracking-[0.08em] text-muted uppercase">
                     {image.caption}
                   </figcaption>
@@ -122,12 +115,10 @@ export function CaseStudy({ project, list }: CaseStudyProps) {
 
 function Frame({
   image,
-  sizes,
   priority = false,
   className,
 }: {
   image: CaseImage;
-  sizes: string;
   priority?: boolean;
   className?: string;
 }) {
@@ -136,28 +127,16 @@ function Frame({
       className={cn("relative w-full bg-[#e6e1d8]", className)}
       style={{ aspectRatio: `${image.width} / ${image.height}` }}
     >
-      {image.src.endsWith(".gif") || image.src.endsWith("motion.webp") ? (
-        <img
-          src={image.src}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          loading={priority ? "eager" : "lazy"}
-          decoding="async"
-          fetchPriority={priority ? "high" : "low"}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-      ) : (
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority={priority}
-          quality={IMAGE_QUALITY}
-          sizes={sizes}
-          className="object-cover"
-        />
-      )}
+      <img
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        fetchPriority={priority ? "high" : "low"}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
     </div>
   );
 }

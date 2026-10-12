@@ -1,9 +1,7 @@
 import { CaseStudy } from "@/components/CaseStudy";
-import { projects } from "@/data/projects";
-import { getAllProjects } from "@/lib/dashboard-store";
-import { pageMetadata, projectOgImage, siteOgImage } from "@/lib/seo";
+import { getProject, projects } from "@/data/projects";
+import { pageMetadata, projectOgImage } from "@/lib/seo";
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 type PageProps = {
@@ -16,13 +14,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const list = await getAllProjects();
-  const project = list.find((item) => item.slug === slug);
-  if (!project) return {};
+  const project = getProject(slug);
+  if (!project) return { title: "Project" };
 
   const description = project.description;
   const url = `/work/${project.slug}`;
-  const image = project.id.startsWith("dash-") ? siteOgImage : projectOgImage(project.slug, project.title);
+  const image = projectOgImage(project.slug, project.title);
 
   return {
     ...pageMetadata(project.title, description, url),
@@ -42,19 +39,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   } satisfies Metadata;
 }
 
-export default function ProjectPage({ params }: PageProps) {
+export default async function ProjectPage({ params }: PageProps) {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (project) return <CaseStudy project={project} list={projects} />;
+
+  const { DashboardProject } = await import("./dashboard-project");
   return (
-    <Suspense>
-      <ProjectBody params={params} />
+    <Suspense fallback={<main id="main" className="page-x pt-28 text-sm text-ink/50">Loading</main>}>
+      <DashboardProject slug={slug} />
     </Suspense>
   );
-}
-
-async function ProjectBody({ params }: PageProps) {
-  const { slug } = await params;
-  const list = await getAllProjects();
-  const project = list.find((item) => item.slug === slug);
-  if (!project) notFound();
-
-  return <CaseStudy project={project} list={list} />;
 }

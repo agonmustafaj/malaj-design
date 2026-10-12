@@ -3,7 +3,6 @@ import type { ProjectInput, StoredFrame, StoredProject } from "@/lib/dashboard-t
 import { mkdir, readFile, unlink, writeFile } from "fs/promises";
 import { cookies } from "next/headers";
 import path from "path";
-import sharp from "sharp";
 
 const groups = new Set<ProjectGroup>(["streetwear", "posters", "mascot", "series"]);
 
@@ -20,11 +19,26 @@ async function blobStore() {
   return getStore("dashboard");
 }
 
+function readWithin<T>(work: Promise<T>, fallback: T, ms = 1200): Promise<T> {
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => resolve(fallback), ms);
+    work.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      () => {
+        clearTimeout(timer);
+        resolve(fallback);
+      },
+    );
+  });
+}
+
 export async function listStored(): Promise<StoredProject[]> {
   try {
     if (useBlobs()) {
-      const store = await blobStore();
-      const saved = await store.get("projects", { type: "json", consistency: "strong" });
+      const saved = await readWithin(blobStore().then((store) => store.get("projects", { type: "json" })), null);
       return Array.isArray(saved) ? (saved as StoredProject[]) : [];
     }
     const raw = await readFile(listFile, "utf8");
@@ -125,6 +139,7 @@ async function removeImage(src: string) {
 }
 
 export async function saveImage(bytes: Buffer) {
+  const { default: sharp } = await import("sharp");
   const id = crypto.randomUUID();
   const converted = await sharp(bytes, { failOn: "none", animated: false })
     .rotate()
@@ -151,7 +166,7 @@ export async function readImage(id: string) {
   if (!/^[a-zA-Z0-9-]+$/.test(id)) return null;
   if (useBlobs()) {
     const store = await blobStore();
-    const bytes = await store.get(`images/${id}`, { type: "arrayBuffer", consistency: "strong" });
+    const bytes = await readWithin(store.get(`images/${id}`, { type: "arrayBuffer" }), null, 4000);
     return bytes ? Buffer.from(bytes) : null;
   }
   try {
