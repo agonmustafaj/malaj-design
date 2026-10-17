@@ -43,6 +43,8 @@ export const metadata: Metadata = {
   creator: site.name,
   publisher: site.studio,
   category: "design",
+  manifest: "/site.webmanifest",
+  appleWebApp: { title: site.studio },
   alternates: { canonical: "/" },
   openGraph: {
     title: site.title,
