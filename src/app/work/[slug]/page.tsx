@@ -1,5 +1,6 @@
 import { CaseStudy } from "@/components/CaseStudy";
 import { getProject, projects } from "@/data/projects";
+import { getAllProjects } from "@/lib/dashboard-store";
 import { pageMetadata, projectOgImage } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Suspense } from "react";
@@ -14,12 +15,13 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProject(slug);
+  const fixed = getProject(slug);
+  const project = fixed ?? (await getAllProjects()).find((item) => item.slug === slug);
   if (!project) return { title: "Project" };
 
   const description = project.description;
   const url = `/work/${project.slug}`;
-  const image = projectOgImage(project.slug, project.title);
+  const image = fixed ? projectOgImage(project.slug, project.title) : { url: project.image, alt: project.title };
 
   return {
     ...pageMetadata(project.title, description, url),
