@@ -5,7 +5,7 @@ export const site = {
   title: "Malaj Design | Andi Malaj, Graphic Designer",
   description:
     "Andi Malaj is a graphic designer in Prishtina, Kosovo. Branding, visual identity, posters, streetwear, and digital design.",
-  url: "https://malaj-design.netlify.app",
+  url: "https://malaj-design.com",
   email: "malajandi05@gmail.com",
   phone: "+383 49 588 161",
   phoneHref: "tel:+38349588161",
