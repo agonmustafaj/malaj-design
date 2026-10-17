@@ -4,7 +4,7 @@ import { ProjectItem } from "@/components/ProjectItem";
 import { projects, type Project, type ProjectGroup } from "@/data/projects";
 import { workGroups } from "@/data/site";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const groupIds = new Set<string>(workGroups.map((item) => item.id));
@@ -14,10 +14,7 @@ function isProjectGroup(value: string | null | undefined): value is ProjectGroup
 }
 
 function sectionProjects(catalog: readonly Project[], id: ProjectGroup) {
-  const matching = catalog.filter((project) => project.group === id);
-  const fresh = matching.filter((project) => project.id.startsWith("dash-"));
-  const rest = matching.filter((project) => !project.id.startsWith("dash-"));
-  return [...fresh, ...rest];
+  return catalog.filter((project) => project.group === id);
 }
 
 function tileLayout(count: number) {
@@ -102,6 +99,11 @@ function PreviewTile({ piece, index }: { piece: Project; index: number }) {
       />
     </span>
   );
+}
+
+export function ProjectBrowserFromUrl() {
+  const group = useSearchParams().get("group") ?? undefined;
+  return <ProjectBrowser group={group} />;
 }
 
 export function ProjectBrowser({

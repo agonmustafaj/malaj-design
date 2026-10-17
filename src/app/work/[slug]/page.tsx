@@ -1,9 +1,8 @@
 import { CaseStudy } from "@/components/CaseStudy";
 import { getProject, projects } from "@/data/projects";
-import { getAllProjects } from "@/lib/dashboard-store";
 import { pageMetadata, projectOgImage } from "@/lib/seo";
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { notFound } from "next/navigation";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -15,13 +14,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const fixed = getProject(slug);
-  const project = fixed ?? (await getAllProjects()).find((item) => item.slug === slug);
+  const project = getProject(slug);
   if (!project) return { title: "Project" };
 
   const description = project.description;
   const url = `/work/${project.slug}`;
-  const image = fixed ? projectOgImage(project.slug, project.title) : { url: project.image, alt: project.title };
+  const image = projectOgImage(project.slug, project.title);
 
   return {
     ...pageMetadata(project.title, description, url),
@@ -44,12 +42,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function ProjectPage({ params }: PageProps) {
   const { slug } = await params;
   const project = getProject(slug);
-  if (project) return <CaseStudy project={project} list={projects} />;
-
-  const { DashboardProject } = await import("./dashboard-project");
-  return (
-    <Suspense fallback={<main id="main" className="page-x pt-28 text-sm text-ink/50">Loading</main>}>
-      <DashboardProject slug={slug} />
-    </Suspense>
-  );
+  if (!project) notFound();
+  return <CaseStudy project={project} list={projects} />;
 }
