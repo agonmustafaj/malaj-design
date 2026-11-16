@@ -98,7 +98,8 @@ const catalog: Omit<Project, "group">[] = [
     title: "Flowpaths",
     category: "Travel Identity",
     year: "2026",
-    description: "A travel agency identity: one mark for land, water, and air, carried from a ticket to an aircraft.",
+    description:
+      "A travel agency identity: one mark for land, water, and air, carried from a ticket and boarding pass through apparel to an aircraft.",
     lead: "Choose your path. A mark built like a route and a turbine, for a travel agency that wants to feel in motion.",
     story: [
       "Flowpaths is a travel agency brand. The symbol pulls three paths into one line: land, water, and air, with the energy of a turbine that does not stop.",
@@ -345,7 +346,8 @@ const catalog: Omit<Project, "group">[] = [
     title: "StoneCastle",
     category: "Packaging and Motion",
     year: "2026",
-    description: "A black bottle and a red castle label for StoneCastle, then the same object set in motion.",
+    description:
+      "A black StoneCastle bottle with a red castle label, set against broken stone, then the same object moved through rock in film.",
     lead: "Stone, glass, and a red line. A label for StoneCastle, and a film of that bottle moving through rock.",
     story: [
       "StoneCastle is a packaging and motion project. The bottle is black. The label is a red drawing of a castle wall, with the crest and the year 1953 held inside it.",
@@ -407,7 +409,8 @@ const catalog: Omit<Project, "group">[] = [
     title: "Spain National Team",
     category: "Kit Design",
     year: "2026",
-    description: "A jersey redesign in three kits: home, away, and training, built from architecture and movement.",
+    description:
+      "A Spain jersey redesign concept in three kits—home, away, and training—drawn from architecture, structure, and movement on cloth.",
     lead: "A contemporary kit for Spain. Architecture, structure, and movement, cut into cloth.",
     story: [
       "This is a redesign of the Spain national team jersey: home, away, and training. The surface takes brutalist geometry and a classical architectural language and turns them into a football pattern.",
@@ -654,7 +657,7 @@ const catalog: Omit<Project, "group">[] = [
     category: "Film Poster",
     year: "2026",
     description:
-      "A Season 2 poster built on a spotlight, a silhouette, and the line “The Chase is On.”",
+      "A Lupin Season 2 film-poster study: dramatic spotlight, a mysterious silhouette held in shadow, and the line “The Chase is On.”",
     lead: "Suspense, held in one silhouette. The poster for Lupin Season 2 is a chase you are already late for.",
     story: [
       "The frame is built from dramatic light and a figure that never fully steps forward. A spotlight does the explaining. Everything else stays in the dark.",
@@ -744,7 +747,7 @@ const catalog: Omit<Project, "group">[] = [
     category: "Event Poster",
     year: "2026",
     description:
-      "A Halloween night in Prishtina: a skeleton at the decks, flame type, and the details of the party.",
+      "A Halloween night in Prishtina: a skeleton at the decks, flame type, the lineup, and the street-poster details of the party.",
     lead: "Fear and music in the same room. The poster has to work on a boarded door, at night, in a hurry.",
     story: [
       "Nata Frikes is a Halloween event poster. A skeleton takes the decks. The type is cut like flame. The job is to feel like the night before you have read a single line.",
@@ -796,7 +799,7 @@ const catalog: Omit<Project, "group">[] = [
     category: "Mascot",
     year: "2026",
     description:
-      "The face of Andi Malaj Rage: a lynx drawn for strength, agility, and an attitude you can wear.",
+      "The face of Andi Malaj Rage: a lynx mascot drawn for strength, agility, and attitude, made to live on hoodie, poster, pin, and sticker.",
     lead: "Strength, agility, and an energy that will not be tidied up. Lynx is the face of Andi Malaj Rage.",
     story: [
       "The mascot carries the brand’s stance: rebellion and confidence, drawn bold, sharp, and specific. The initials A and M stay in the mark, so the character and the logo are one identity, not a mascot parked next to a logo.",
@@ -894,7 +897,8 @@ const catalog: Omit<Project, "group">[] = [
     title: "Instant Crush",
     category: "Song Cover",
     year: "2026",
-    description: "Cover art for Instant Crush: a figure cut by light, then a sleeve, a disc, and a vinyl.",
+    description:
+      "Cover art for Instant Crush: a figure cut by cyan and magenta light, then carried onto a sleeve, a disc, and a vinyl object.",
     lead: "A cover for Instant Crush. A body in motion, cut by light, carried onto a sleeve and a disc.",
     story: [
       "The cover is for Instant Crush. The picture is electronic and abstract: a figure broken into shards of cyan, magenta, and light, set on a black field.",
@@ -979,7 +983,7 @@ const catalog: Omit<Project, "group">[] = [
     category: "Stationery Study",
     year: "2026",
     description:
-      "A study in how a house rooted in tradition can speak through cards, letters, and a quieter mark.",
+      "A stationery study—not a client project—for a house rooted in tradition: letters, cards, and envelopes speaking through quieter marks.",
     lead: "A study, not a commission. What happens when a house built on tradition is asked to speak through a card you can hold.",
     story: [
       "The exercise is a rebranding concept for Dior’s stationery: timeless elegance rebuilt as a fresher visual language, without throwing out the thing that made the house recognizable. Luxury, here, is restraint.",

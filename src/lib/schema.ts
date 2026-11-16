@@ -48,10 +48,11 @@ export function siteGraph() {
         worksFor: { "@id": studioId },
       },
       {
-        "@type": "ProfessionalService",
+        "@type": ["Organization", "ProfessionalService"],
         "@id": studioId,
         name: site.studio,
         url: site.url,
+        logo: `${site.url}${portrait.src}`,
         image: `${site.url}${portrait.src}`,
         description: site.description,
         founder: { "@id": personId },
@@ -59,6 +60,7 @@ export function siteGraph() {
         telephone: "+38349588161",
         areaServed: "Worldwide",
         address,
+        sameAs: socialGroups[0].links.map((link) => link.href),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
           name: "Design services",
@@ -95,20 +97,24 @@ export function workList(projects: readonly Project[]) {
 
 export function projectGraph(project: Project) {
   const url = `${site.url}/work/${project.slug}`;
+  const images = project.frames.map((frame) => `${site.url}${frame.src}`);
 
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "VisualArtwork",
+        "@type": ["VisualArtwork", "Product"],
+        "@id": `${url}#product`,
         name: project.title,
         description: project.description,
         url,
-        image: project.frames.map((frame) => `${site.url}${frame.src}`),
+        image: images,
         creator: { "@id": personId },
+        brand: { "@id": studioId },
         dateCreated: project.year,
         artform: project.category,
         artMedium: "Digital graphic design",
+        category: project.category,
       },
       {
         "@type": "BreadcrumbList",
