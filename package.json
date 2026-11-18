@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "verify:host-redirects": "node scripts/verify-host-redirects.mjs"
   },
   "dependencies": {
     "framer-motion": "^14.0.0",

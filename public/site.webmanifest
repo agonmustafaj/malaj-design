@@ -1,7 +1,9 @@
 {
   "name": "Malaj Design",
   "short_name": "Malaj Design",
-  "start_url": "/",
+  "id": "https://malaj-design.com/",
+  "start_url": "https://malaj-design.com/",
+  "scope": "https://malaj-design.com/",
   "display": "standalone",
   "background_color": "#111111",
   "theme_color": "#ffffff",

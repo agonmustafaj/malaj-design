@@ -1,0 +1,24 @@
+name: Verify host redirects
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Catch accidental www/http chain regressions without waiting for an SEO crawl.
+    - cron: "17 6 * * 1"
+  workflow_run:
+    workflows: ["Deploy to GitHub Pages"]
+    types: [completed]
+
+jobs:
+  verify:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for Pages edge cache
+        if: ${{ github.event_name == 'workflow_run' }}
+        run: sleep 45
+      - run: npm run verify:host-redirects
